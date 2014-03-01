@@ -1,0 +1,150 @@
+@import "mixins"
+
+#cart.loading
+  position: relative
+  &:before
+    content: ""
+    position: absolute
+    z-index: 1
+    background-color: rgba(255, 255, 255, 0.7)
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+  &:after
+    content: ""
+    position: absolute
+    z-index: 2
+    background-image: image-url("preloader.gif")
+    height: 50px
+    width: 50px
+    background-repeat: no-repeat
+    background-position: center
+    top: 20%
+    left: 50%
+    margin-left: -25px
+    
+#cart
+  .no-records
+    text-align: center
+    margin: 30px 0
+  
+
+.cart-wrapper
+  padding: 0 100px
+  position: relative
+  .bold-line
+    height: 3px
+    background-color: $grey
+    margin: 20px 0 20px 0
+    width: 30%
+    float: right
+
+.item
+  border: 1px solid $grey
+  padding: 10px
+  margin-bottom: 20px
+  position: relative
+  .item-number
+    position: absolute
+    left: -19px
+    top: -1px
+    height: 19px
+    line-height: 19px
+    padding: 0 5px
+    background-color: $grey
+    color: white
+  .picture
+    float: left
+  .name
+    float: left
+    width: 200px
+    padding: 0 20px
+    font-weight: bold
+  .price-wrapper
+    float: left
+    height: 80px
+    line-height: 80px
+    .quantity
+      float: left
+      input[type=number]
+        width: 30px
+      
+    .times, .sum
+      float: left
+      padding: 0 10px
+    .unit-price
+      float: left
+    .item-summary-price
+      float: left
+  .button
+    position: absolute
+    top: 50%
+    margin-top: -12px
+    right: 15px
+    
+.cart-box
+  padding: 0 100px
+  .button
+    height: 30px
+    line-height: 30px
+    font-size: 18px
+    padding: 0 20px
+    float: right
+    margin: 20px 0 50px 0
+  .total
+    text-align: right
+    font-weight: bold
+    font-size: 16px
+    
+h3
+  padding: 2px 10px
+  margin-bottom: 20px
+  background-color: $light-background-grey
+  display: inline-block
+  
+/* Autentykacja */
+  
+section.authentication
+  padding: 0 200px
+  nav
+    text-align: center
+    a
+      display: inline-block
+      text-decoration: none
+      color: $grey
+      background-color: $light-background-grey
+      padding: 8px 20px
+      margin: 0 10px
+      &.active
+        background-color: $base-color
+        color: white
+  section.login, section.register, section.guest
+    border: 1px solid $base-color
+    padding: 25px 70px 40px 70px
+    margin-top: 20px
+    display: none
+    &.active
+      display: block
+    input
+      width: 482px
+    .input
+      margin-top: 15px
+    .actions
+      margin-top: 20px
+    .form-button
+      float: right
+    .form-link
+      float: left
+      a
+        display: block
+        background-color: $light-background-grey
+        color: $grey
+        text-decoration: none
+        height: 25px
+        line-height: 25px
+        padding: 0 10px
+        &:hover
+          background-color: $hover-light-grey
+  
+/* Koniec autentykacji */

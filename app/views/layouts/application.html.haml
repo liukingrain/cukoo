@@ -1,0 +1,27 @@
+!!!
+%html{ lang: I18n.locale }
+  %head
+    %meta(charset="utf-8")
+    %title Sklep
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = favicon_link_tag "favicon.ico"
+    = stylesheet_link_tag href: "http://fonts.googleapis.com/css?family=Varela&subset=latin,latin-ext", rel: "stylesheet", type: "text/css"
+    %meta{name: "viewport", content: "width=device-width, maximum-scale=1, minimum-scale=1"}
+
+  %body
+
+    - if content_for?(:header)
+      = yield(:header)
+    - else
+      = render "header"
+      
+    .container.main-container
+      %main.main-content
+        = yield
+        
+    - if content_for?(:footer)
+      = yield(:footer)
+    - else
+      = render "footer"

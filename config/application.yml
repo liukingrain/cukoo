@@ -1,0 +1,16 @@
+defaults: &defaults
+  default_url_options:
+    host: "sklep.dev"
+  facebook:
+    app_id: 1406712852919830
+    secret: e95a46516732baea76f2455411a7a2ed
+    
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

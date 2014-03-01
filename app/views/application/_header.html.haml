@@ -1,0 +1,49 @@
+%header.main-header
+  = link_to root_path, class: "logo" do
+    = image_tag "logo.png", alt: "W domu najlepiej"
+  %nav.top-nav{ data: { role: "main-top-nav" } }
+    %ul
+      - if current_user
+        %li= link_to "Ustawienia konta", edit_user_registration_path
+        %li= link_to "Wyloguj się", destroy_user_session_path, method: :delete
+      - else
+        %li{ data: {role: "login-link" } } Zaloguj się
+        %li{ data: {role: "registration-link" } } Zarejestruj się
+    = render "sign_in_popup"
+    = render "sign_up_popup"
+  .clearfix
+  = link_to cart_path do
+    %section.cart
+      .small-icon.cart
+      .cart-details
+        .price{ data: {'initial-value' => current_cart.items_amount_due } }= format_price current_cart.items_amount_due
+        .amount{ data: {'initial-value' => current_cart.items_quantity } }
+          = I18n.translate :product_quantity, count: current_cart.items_quantity
+        .clearfix
+  %nav.main-nav{ data: { role: "main-nav" } }
+    %ul.main-category
+      %li{data: {role: "main-category" }}
+        =link_to "Pościele", products_bedclothes_path
+        .sub-category-wrapper{ data: {role: "sub-category" } }
+          %div
+            %ul.sub-category
+              %li=link_to "200x220", "#"
+              %li=link_to "200x200", "#"
+              %li=link_to "160x200", "#"
+              %li=link_to "Bawełna satynowa", "#"
+              %li=link_to "Adamaszek", "#"
+              %li=link_to "Jednokolorowe", "#"
+      %li{ data: {role: "main-category" } }
+        =link_to "Prześcieradła", products_sheets_path
+        .sub-category-wrapper{ data: {role: "sub-category" } }
+          %div
+            %ul.sub-category
+              %li=link_to "200x220", "#"
+              %li=link_to "200x200", "#"
+              %li=link_to "160x200", "#"
+      %li{data: {role: "main-category" }}=link_to "Koce", "#"
+      %li{data: {role: "main-category" }}=link_to "Narzuty", "#"
+      %li{data: {role: "main-category" }}=link_to "Szlafroki", "#"
+      %li{data: {role: "main-category" }}=link_to "Poszewki", "#"
+      %li{data: {role: "main-category" }}=link_to "%Promocje", "#", class: "bargain"
+  = render "notices"

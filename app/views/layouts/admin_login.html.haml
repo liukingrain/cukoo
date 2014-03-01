@@ -1,0 +1,12 @@
+!!! 5
+%html
+  %head
+    %meta{ charset: "utf-8" }
+    %title Sklep
+    = stylesheet_link_tag "admin/admin.css", media: "all"
+    = javascript_include_tag "admin"
+    = csrf_meta_tags 
+
+    %body.admin
+      .content
+        = yield

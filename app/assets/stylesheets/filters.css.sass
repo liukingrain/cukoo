@@ -1,0 +1,53 @@
+@import "mixins"
+
+section.filters
+  background-color: $light-background-grey
+  transition: height 0.5s ease-in
+  height: 0
+  overflow: hidden
+  h2
+    font-size: 14px
+    margin: 0
+    padding: 6px
+    border-bottom: 1px dotted #cacaca
+    
+button.filter
+  float: right
+  border: none
+  padding-right: 30px
+  margin-bottom: 5px
+  background-color: $light-background-grey
+  .small-icon.filter
+    background-position: -84px 0
+    float: left
+  &:focus
+    outline: none
+  &:hover
+    color: $base-color
+  .text
+    display: block
+    line-height: 28px
+    margin-left: 6px
+    float: left
+    position: relative
+    &:after
+      content: ""
+      width: 0
+      height: 0
+      border-left: 6px solid transparent
+      border-right: 6px solid transparent
+      border-top: 6px solid $grey
+      position: absolute
+      top: 50%
+      margin-top: -3px
+      right: -20px
+    
+.filters-wrapper.active
+  section.filters
+    height: 180px
+    transition: height 0.5s ease-in-out
+  button.filter
+    .text
+      &:after
+        border-top: none
+        border-bottom: 6px solid $grey

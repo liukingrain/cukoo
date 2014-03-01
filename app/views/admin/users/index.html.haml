@@ -1,0 +1,43 @@
+- content_for :search do
+  = simple_form_for [:admin, @q], url: admin_users_path, method: :get, wrapper: :search do |f|
+    = f.input :email_or_last_name_cont, placeholder: "Email lub nazwisko", label: false, input_html: { class: "form-control" }
+    = f.button :submit, "Szukaj", class: "btn btn-primary"
+    - if search_active?(@q)
+      = link_to admin_users_path, class: "btn btn-mini btn-danger", title: "Wyczyść" do
+        %i.icon.icon-remove
+
+= filters do
+  = simple_form_for [:admin, @q], url: admin_users_path, method: :get do |f|
+    %fieldset
+      %legend Użytkownik
+      = f.input :email_cont, label: "Adres e-mail"
+    %fieldset
+      %legend Zakres dat utworzenia konta
+      = f.input :created_at_gteq, as: :date, label: "Od", include_blank: true
+      = f.input :created_at_lteq, as: :date, label: "Do", include_blank: true
+
+    .form-actions.form-group
+      = f.button :submit, "Filtruj", class: "btn btn-primary"
+      = link_to "Wyczyść", admin_users_path, class: "btn btn-default"        
+
+%table.table.table-striped
+  %tr
+    %th= sort_link(@q, :id, "ID") 
+    %th= sort_link(@q, :email, "Email")
+    %th= sort_link(@q, :first_name, "Imię")
+    %th= sort_link(@q, :last_name, "Nazwisko")
+    %th
+  -@users.each do |user| 
+    %tr
+      %td= user.id
+      %td= user.email
+      %td= user.first_name
+      %td= user.last_name
+      %td
+        .pull-right
+          .btn-group
+            = link_to admin_user_path(user), class: "btn btn-primary" do
+              %i.icon-info-sign 
+              Szczegóły
+              
+= paginate @users

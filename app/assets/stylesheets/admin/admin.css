@@ -1,0 +1,9 @@
+/*
+ *= require chosen/chosen.min.css
+ *= require jquery.ui.all
+ *= require twitter-bootstrap-static/bootstrap
+ *= require twitter-bootstrap-static/sprites
+ *= require twitter-bootstrap-static/fontawesome
+ 
+ *= require_tree .
+ */

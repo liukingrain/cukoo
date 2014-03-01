@@ -1,0 +1,42 @@
+body.admin
+  min-width: 1000px
+  
+  .navbar
+    margin-bottom: 0    
+    .brand
+      margin-left: 15px
+  
+  header.main
+    position: relative
+    background-color: #383838
+    padding-left: 35px
+    padding-right: 35px
+    padding-top: 5px
+    padding-bottom: 10px
+
+    .search
+      display: inline-block
+      margin-left: 15px
+      line-height: 30px
+      height: 30px
+      
+      form
+        margin: 0
+      
+      .control-group
+        display: inline-block
+        margin-bottom: 0
+      
+      input.string
+        width: 200px
+    
+    .filters, .actions
+      display: inline-block
+
+  .content
+    padding: 35px
+
+    [data-role=filters-popover]
+      display: none
+      
+  .wrapper

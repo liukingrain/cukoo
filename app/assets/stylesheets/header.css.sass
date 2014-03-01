@@ -1,0 +1,117 @@
+@import "mixins"
+
+header.main-header
+
+  a.logo
+    position: absolute
+    left: 0 
+    top: 15px
+    img
+      height: 100px
+  ul
+    +unstyled-list
+    
+  .top-nav
+    float: right
+    color: $light-grey
+    margin-top: 6px
+    li
+      display: inline-block
+      margin-left: 16px
+      cursor: pointer
+      z-index: 4
+      &:hover
+        color: black
+        text-decoration: underline
+        a
+          color: black
+          text-decoration: underline
+      a
+        color: $light-grey
+        text-decoration: none
+    
+  .main-nav
+    border-top: 1px solid $grey
+    border-bottom: 1px solid $grey
+    padding: 8px 0
+    font-size: 16px
+    margin-top: 110px
+    
+    ul
+      text-align: center
+    
+    ul.main-category
+      > li
+        position: relative
+        display: inline-block
+        margin: 0 20px
+        &.active
+          background-color: $base-color
+          > a
+            color: white
+        > a
+          text-decoration: none
+          display: block
+          color: $grey
+          padding: 4px 10px
+          &.bargain
+            color: $base-color
+            &:hover
+              color: white
+    
+    .sub-category-wrapper
+      position: absolute
+      opacity: 0
+      top: 22px
+      left: 50%
+      margin-left: -80px
+      z-index: 2
+      height: 0
+      overflow: hidden
+      &.active
+        opacity: 1
+        top: 29px
+        height: auto
+        padding-top: 15px
+        transition: all 0.2s ease-in-out
+      > div
+        padding: 5px
+    ul.sub-category
+      background-color: white
+      width: 140px
+      padding: 10px
+      +box-shadow
+      > li
+        > a
+          font-size: 12px
+          display: block
+          padding: 5px 0
+          color: $grey
+          text-decoration: none
+          &:hover
+            background-color: $base-color
+            color: white  
+  section.cart
+    background-color: $base-color
+    float: right
+    padding: 10px
+    margin-top: 40px
+    color: $grey
+    &:hover
+      background-color: $hover-base-color
+    .cart-details
+      float: right
+    .price
+      float: left
+      padding-right: 10px
+      border-right: 1px solid $grey
+      line-height: 28px
+    .amount
+      float: left
+      padding-left: 10px
+      line-height: 28px
+    .small-icon.cart
+      background-position: -112px 0
+      float: left
+      margin-right: 15px
+            

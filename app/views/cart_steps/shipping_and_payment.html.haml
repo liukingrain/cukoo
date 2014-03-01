@@ -1,0 +1,25 @@
+.container.shipping-and-payment{ data: { role: "auto-updating" } }
+  .wrapper
+    = simple_form_for @step.model do |f|
+      .inputs
+        = render "shipping_address_form", f: f
+        = render "billing_address_form", f: f
+                
+        %h2.subheading= t("cart_steps.comment")
+        = f.input :comment, as: :text, label: false
+        
+        %h2.heading= t("cart_steps.payments")
+        = f.input :payment_method, as: :radio_enumeration, label: false
+        %h2.heading= t("cart_steps.shipping_method")
+        = f.input :shipping_method, as: :radio_enumeration, label: false, checked: @step.shipping_method.value
+        %span
+          = t(".delivery_cost")
+          = format_price @step.shipping_price
+      .clearfix
+      
+      .actions
+        .form-button
+          = button_tag t("cart.summary"), type: "submit", class: "button"
+        .form-link
+          lub
+          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)

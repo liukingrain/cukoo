@@ -1,0 +1,33 @@
+%h3 Twój koszyk
+= simple_form_for @step.model, method: :patch do |f|
+  %section.cart-wrapper
+    - @step.items.each_with_index do |item, index|
+      .item{ data: { id: item.id, "nested-element" => true } }
+        .item-number= index+1
+        .picture= image_tag item.product_picture.thumb
+        .name= item.product_name
+        .price-wrapper
+          .quantity
+            = f.simple_fields_for :items, item do |fi|
+              = fi.input :quantity, label: false, input_html: { data: {'initial-value' => item.quantity } }
+              = fi.input_field :_destroy, value: 0, as: :hidden, data: { "remove-nested-element" => true, "initial-value" => 0 }
+          %span.times x
+          .unit-price
+            = format_price item.product_price
+          %span.sum =
+          .item-summary-price   
+            = format_price item.amount_due
+          .clearfix
+        = link_to t(".delete"), "#", class: "button", data: { "element-id" => item.id, "remove-nested-element" => true }
+        .clearfix
+    .bold-line
+    .clearfix
+  .cart-box
+    .total
+      %span.text razem =
+      %span.amount= format_price @cart.items_amount_due
+    .clearfix
+    .actions
+      .form-button
+        = button_tag t(".confirm_cart"), type: "submit", class: "button"
+          

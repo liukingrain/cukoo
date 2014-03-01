@@ -1,0 +1,15 @@
+= simple_form_for [:admin, @product], class: "form-horizontal" do |f|
+  .form-group
+    = f.input :picture, as: :file
+    = f.input :product_type, as: :enumeration
+    = f.input :name, input_html: { class: "form-control" }
+    = f.input :description, input_html: { class: "form-control" }
+    = f.input :price, input_html: { class: "form-control" }
+    = f.input :bargain, inline_label: 'Promocja'
+    = f.input :amount, input_html: { class: "form-control" }
+    = f.input :size, input_html: { class: "form-control" }
+    = f.input :manufacturer, input_html: { class: "form-control" }
+    = f.input :fabric, input_html: { class: "form-control" }
+    = f.input :color, name: "Wybierz pasujący kolor", collection: @product.colors, input_html: { class: "form-control chosen-input", multiple: "true", data: { placeholder: "Wybierz pasujący kolor"} }
+    .actions
+      = f.button :submit, class: "btn btn-primary"

@@ -1,0 +1,20 @@
+pl:
+  enumerations:
+    product:
+      type:
+        bedclothes: "pościel"
+        sheet: "prześcieradło"
+        blanket: "koc"
+        bathrobe: "szlafrok"
+        bedspread: "narzuta"
+        pillowslip: "poszewka"
+    cart:
+      shipping_method:
+        courier: "Kurier"
+        post: "Poczta Polska"
+      payment_method:
+        cash_on_delivery: "Płatność przy odbiorze"
+        pay_u: "Płatność przez PayU"
+    order:
+      status:
+        new: "nowe"

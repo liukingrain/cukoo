@@ -1,0 +1,34 @@
+.summary
+  .addresses
+    = resource.shipping_address.summary
+    .clearfix
+    = resource.billing_address.summary
+    .clearfix
+  %h2.heading= t("summary.products")
+  .items
+    = render partial: "cart/item", collection: resource.items
+      
+  .cart-summary
+    %table
+      %tr
+        %th Podsumowanie:
+        %th  
+      %tr.summary
+        %td Razem
+        %td  
+          %strong= format_price resource.items_amount_due
+      %tr.shipping
+        %td
+          %span
+            Koszt dostawy
+            = "(#{resource.shipping_method})"
+        %td
+          %strong= format_price resource.shipping_price
+      %tr.shipping_summary
+        %td
+          %span Do zapłaty
+        %td
+          %strong= format_price resource.amount_due
+    .clearfix
+  
+  = resource.user_comment

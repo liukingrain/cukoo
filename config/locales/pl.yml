@@ -1,0 +1,16 @@
+pl:
+  activerecord:
+    models:
+      product: "Produkt"
+      user: "Użytkownik"
+  product_quantity:
+    zero: "Koszyk jest pusty"
+    one: "%{count} produkt w koszyku"
+    few: "%{count} produkty w koszyku"
+    other: "%{count} produktów w koszyku"
+  cart_steps:
+    address: "Dane do dostawy"
+    billing_address: "Dane do faktury"
+    comment: "Komenatarz do zamówienia"
+    payments: "Sposób płatności"
+    shipping_method: "Sposób dostawy"

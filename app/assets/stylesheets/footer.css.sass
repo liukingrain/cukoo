@@ -1,0 +1,65 @@
+@import "mixins"
+
+footer.main-footer
+  background-color: $light-background-grey
+  margin-top: 33px
+  padding: 15px 20px
+  .site-information
+    width: 71%
+    float: left
+    ul
+      +unstyled-list
+      li
+        padding: 2px 0
+        a
+          color: $grey
+          font-size: 12px
+          text-decoration: none
+          &:hover
+            text-decoration: underline
+    h2
+      font-size: 16px
+      margin: 0 0 10px 0
+    .orders, .information, .account
+      float: left
+      width: 33%
+    .cooperation
+      border-top: 1px solid $light-grey
+      margin-top: 30px
+      h2
+        margin-top: 30px
+  .contact
+    width: 28%
+    border: 2px solid $base-color
+    float: right
+    background-color: white
+    border-radius: 3px
+    h2
+      color: $base-color
+      margin: 0
+      padding: 12px
+      border-bottom: 1px dotted $base-color
+    .content
+      padding: 8px 15px 18px 15px
+      font-size: 16px
+    .device-wrapper
+      margin: 10px 0
+    .device
+      margin-left: 15px
+      float: left
+      line-height: 28px
+      a
+        color: $grey
+      &.address
+        max-width: 200px
+        line-height: normal
+        .text
+          color: $base-color
+    .small-icon
+      float: left
+      &.phone
+        background-position: 0 0
+      &.email
+        background-position: -28px 0
+      &.address
+        background-position: -56px 0

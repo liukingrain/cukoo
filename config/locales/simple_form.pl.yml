@@ -1,0 +1,54 @@
+pl:
+  address: &address_attributes
+    city: "Miejscowość"
+    country: "Kraj"
+    country_name: "Kraj"
+    first_name: "Imię"
+    last_name: "Nazwisko"
+    name: "Imię i nazwisko"
+    phone_number: "Numer telefonu"
+    postal_code: "Kod pocztowy"
+    street_and_number: "Nazwa ulicy i numer"
+  addresses: &addresses_attributes
+    billing_address: 
+      <<: *address_attributes
+      company_name: "Nazwa firmy"
+      company_nip: "NIP"
+      heading: "Dane do faktury"
+    shipping_address: 
+      <<: *address_attributes
+      heading: "Adres dostawy"
+  simple_form:
+    labels:
+      product:
+        name: "Nazwa"
+        picture: "Zdjęcie"
+        description: "Opis"
+        price: "Cena"
+        amount: "Ilość"
+        size: "Rozmiar"
+        manufacturer: "Producent"
+        fabric: "Materiał"
+        color: "Kolor"
+        type: "Typ"
+      cart_step:
+        <<: *addresses_attributes
+        comment: "Komentarz do zamówienia"
+        custom_billing_address: "Inne dane do faktury"
+        invoice: "Chcę otrzymać fakturę"
+      user:
+        password: "Hasło"
+        email: "Email"
+        password_confirmation: "Powtórz hasło"
+        remember_me: "Zapamiętaj mnie"
+        sign_up: "Zarejestruj się"
+        first_name: "Imię"
+      cart_steps:
+        shipping_and_payment:
+          shipping_address_attributes:
+            first_name: "Imię"
+    hints:
+      user:
+        sign_up: "Zarejestruj się"
+    error_notification:
+      default_message: "W formularzu wystąpiły błędy"

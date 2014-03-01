@@ -1,0 +1,78 @@
+@import "mixins"
+
+body
+  width: 1024px
+  margin: 0 auto
+  font-family: $varela
+  font-size: 14px
+  position: relative
+
+.container.main-container
+  margin-top: 30px
+  
+.clearfix
+  clear: both
+  
+.more
+  padding: 2px 20px 2px 10px
+  background-color: $grey
+  color: white
+  text-decoration: none
+  position: relative
+  display: inline-block
+  &:after
+    content: ""
+    background-image: url("small-icons-sprite.png")
+    width: 28px
+    height: 28px
+    background-position: -196px 0
+    position: absolute
+    top: 50%
+    margin-top: -14px
+    right: -4px
+  &:hover
+    background-color: $hover-grey
+    
+    
+  
+.small-icon
+  background-image: url("small-icons-sprite.svg")
+  width: 28px
+  height: 28px
+  html.no-svg &
+    background-image: url("small-icons-sprite.png")
+
+.button
+  background-color: $base-color
+  color: white
+  height: 25px
+  line-height: 25px
+  padding: 0 10px
+  text-decoration: none
+  display: inline-block
+  border: none
+  &:hover
+    background-color: $hover-base-color
+  &:focus
+    outline: none
+  
+.preloader
+  position: absolute
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  background-color: rgba(255, 255, 255, 0.7)
+  z-index: 1
+  &:after
+    content: ""
+    background-image: image-url("preloader.gif")
+    background-repeat: no-repeat
+    background-position: center
+    height: 50px
+    width: 50px
+    position: absolute
+    top: 50%
+    margin-top: -25px
+    left: 50%
+    margin-left: -25px

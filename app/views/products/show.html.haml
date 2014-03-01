@@ -1,0 +1,23 @@
+%section.product-details
+  = image_tag @product.picture.large, class: "large-picture"
+  .details
+    %h2= @product.name
+    .description= @product.description
+    .fabric
+      Skład:
+      = @product.fabric
+    .manufacturer
+      Producent:
+      = @product.manufacturer
+    .price
+      Cena:
+      = format_price @product.price
+    .add-to-cart
+      = simple_form_for @cart_item do |f|
+        = f.input :product_id, as: :hidden, input_html: { value: @product.id }
+        = f.input :product_type, as: :hidden, input_html: { value: @product.product_type }
+        = f.input :product_size, as: :hidden, input_html: { value: @product.size }, label: false
+        = f.button :submit, "Dodaj do koszyka"
+  
+  
+.clearfix

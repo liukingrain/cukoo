@@ -1,0 +1,38 @@
+%section.authentication
+  %nav
+    = link_to "Zaloguj się", "", class: "active", data: { role: "cart-button-login" }
+    = link_to "Zarejestruj się", "", data: { role: "cart-button-register" }
+    = link_to "Kup bez rejestracji", "", data: { role: "cart-button-guest" }
+  %section.login.active{ data: { role: "cart-section-login" } }
+    = simple_form_for @step.user, url: user_session_path(return_url: cart_step_url(@step.next)) do |f|
+      .inputs
+        = f.input :email
+        = f.input :password
+      .actions
+        .form-button  
+          = button_tag t(".login"), type: "submit", class: "button"
+        .form-link
+          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .clearfix
+  %section.register{ data: { role: "cart-section-register" } }
+    = simple_form_for @step.user, url: user_registration_path(return_url: cart_step_url(@step.next)) do |f|
+      .inputs  
+        = f.input :email
+        = f.input :password
+        = f.input :password_confirmation
+      .actions
+        .form-button  
+          = button_tag t(".register"), type: "submit", class: "button"
+        .form-link
+          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .clearfix
+  %section.guest{ data: { role: "cart-section-guest" } }
+    = simple_form_for @step.model, method: :patch do |f|
+      .inputs
+        = f.input :email
+      .actions
+        .form-button  
+          = button_tag t(".guest"), type: "submit", class: "button"
+        .form-link
+          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .clearfix

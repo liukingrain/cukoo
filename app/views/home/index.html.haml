@@ -1,0 +1,53 @@
+.carousel-wrapper
+  %ul.carousel{ data: { role: "carousel" } }
+    - @products.with_bargain.each do |product|
+      %li{ data: { role: "item" } }
+        .nav-icon.prev.small-icon{ data: { role: "nav-link" } }
+        .nav-icon.next.small-icon{ data: { role: "nav-link" } }
+        .description
+          .title= product.name
+          .content= product.description
+          .fabric
+            Skład: 
+            = product.fabric
+          = link_to "zobacz", product_path(product.id), class: "more"
+        .photo
+          = image_tag product.picture.large, alt: "sypialnia"    
+.categories-wrapper
+  %ul
+    %li
+      = link_to products_path do
+        .photo= image_tag "temp/posciele.png", alt: "posciele"
+        %h2 Pościele
+    %li
+      = link_to "" do
+        .photo= image_tag "temp/koce.png", alt: "koce"
+        %h2 Koce
+    %li
+      = link_to "" do
+        .photo= image_tag "temp/poszewki.png", alt: "poszewki"
+        %h2 Poszewki
+    %li
+      = link_to "" do
+        .photo= image_tag "temp/szlafroki.png", alt: "szlafroki"
+        %h2 Szlafroki
+  .clearfix
+      
+%ul.advantages
+  %li.advantage
+    .advantage-icons.free-shipping
+    .description Przy zamówieniach powyżej 200zł dostawa gratis!
+    = link_to "więcej", "", class: "more"
+  %li.advantage
+    .advantage-icons.good-quality
+    .description Gwarancja najwyższej jakości polskich materiałów.
+    = link_to "więcej", "", class: "more"
+  %li.advantage
+    .advantage-icons.gifts
+    .description Na życzenie Klienta  towar pakujemy jako prezent.
+    = link_to "więcej", "", class: "more"
+  %li.advantage.bargains
+    .advantage-icons.bargains
+    .description Korzystna oferta cenowa.
+    = link_to "więcej", "", class: "more"
+.clearfix

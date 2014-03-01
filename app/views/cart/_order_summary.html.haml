@@ -1,0 +1,31 @@
+.order_items
+  - items.each do |item|
+    .order_item
+      .book
+        .cover= item.cover
+        .details
+          %span.item_author
+            = item.product.authors.each.map(&:full_name).join(', ')         
+          %span.item_name= item.title
+      .price_and_quantity
+        %span.price= format_price item.product_price
+        %span.times &times;
+        %span.quantity= item.quantity
+        %span.equal =
+        %span= format_price item.amount_due
+  %table.order_summary
+    %tr.summary
+      %td
+      %td  
+        %strong= format_price @step.items_amount_due
+    %tr.shipping
+      %td
+        %span= "#{t(".shipping_method")} (#{@step.shipping_method})"
+      %td
+        %strong= format_price @step.shipping_price
+    %tr.shipping_summary
+      %td
+        %span= "#{t(".sum")}"
+      %td
+        %strong= format_price @step.amount_due
+.clearfix

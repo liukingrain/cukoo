@@ -1,0 +1,14 @@
+pl:
+  cart:
+    items:
+      add_to_cart_success: "Produkt został dodany do koszyka."
+    form:
+      delete: "Usuń"
+      confirm_cart: "Zamawiam"
+  cart_steps:
+    authentication:
+      login: "Zaloguj się"
+      register: "Zarejestruj się"
+      guest: "Kup bez rejestracji"
+    fresh:
+      empty_cart: "Koszyk jest pusty"

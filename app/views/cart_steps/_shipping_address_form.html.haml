@@ -1,0 +1,12 @@
+%h2.heading= t("cart_steps.address")
+= f.fields_for :shipping_address_attributes, @step.shipping_address do |fi| 
+  .two-inputs
+    = fi.input :first_name
+    = fi.input :last_name
+  .two-inputs
+    = fi.input :street_and_number
+    = fi.input :phone_number, required: @step.require_phone_number?
+  .two-inputs
+    = fi.input :city
+    = fi.input :postal_code
+  .clearfix

@@ -1,0 +1,13 @@
+pl:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              not_found: "Twój mail nie znajduje się w naszej bazie."
+      model:
+        user:
+          password: "hasło"
+          
+  Send_me_reset_password_instructions: "Wyślij instrukcję resetowania hasła"

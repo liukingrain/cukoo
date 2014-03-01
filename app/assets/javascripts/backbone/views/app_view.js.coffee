@@ -1,0 +1,1 @@
+class Sklep.Views.AppView extends Backbone.View

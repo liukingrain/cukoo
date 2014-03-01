@@ -1,0 +1,19 @@
+%section.account-settings
+  %h2 Ustawienia konta
+
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :email, :required => true, :autofocus => true
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %p Currently waiting confirmation for: 
+        = resource.unconfirmed_email
+
+      = f.input :password, :autocomplete => "off", :hint => "Pozostaw to pole puste, jeżeli nie chcesz dokonywać zmian.", :required => false
+      = f.input :password_confirmation, :required => false
+      = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+
+    .form-actions
+      = f.button :submit, "Aktualizuj konto"

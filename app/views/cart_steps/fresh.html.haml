@@ -1,0 +1,9 @@
+#cart
+  - if @cart.items.any?  
+    .container{ data: { role: "auto-updating" } }
+      .cart_actions
+      = render "cart/form"
+      .clearfix
+  - else
+    %p.no-records= t(".empty_cart")
+    .clearfix

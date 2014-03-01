@@ -1,0 +1,5 @@
+%p= "Witaj #{@email}!"
+
+%p Aby aktywować swoje konto w serwisie kolordomu.pl, kliknij w link aktywacyjny znajdujący  się poniżej:
+
+%p= link_to 'Potwierdź moje konto', user_confirmation_url(:confirmation_token => @token)

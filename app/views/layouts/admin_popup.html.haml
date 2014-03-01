@@ -1,0 +1,9 @@
+%section.popup
+  %header
+    %h1 popup
+    = link_to "", "#", class: "close"
+    
+  .popup-content
+    = yield
+  .preloader-overlay
+    .preloader

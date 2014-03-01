@@ -1,0 +1,48 @@
+%footer.main-footer
+  %section.site-information
+    %section.orders
+      %h2 Zamówienia
+      %ul
+        %li=link_to "Jak zamawiać?", ""
+        %li=link_to "Płatność i dostawa", ""
+        %li=link_to "Zwroty i rekalamcje", ""
+    %section.information
+      %h2 Informacje
+      %ul
+        %li=link_to "Regulamin", ""
+        %li=link_to "Polityka prywatności", ""
+    %section.account
+      %h2 Konto
+    .clearfix
+    %section.cooperation
+      %h2 Współpracujemy z:
+      %ul
+        %li=image_tag "matex-logo.png", alt: "matex"
+        %li
+  %aside.contact
+    %h2 
+      Masz pytania? 
+      %br
+      Skontaktuj się z nami!
+    .content
+      .device-wrapper
+        .small-icon.phone
+        .device 765-234-987
+        .clearfix
+      .device-wrapper
+        .small-icon.email
+        .device 
+          = mail_to "biuro@sklep.pl"
+        .clearfix
+      .device-wrapper
+        .small-icon.address
+        .device.address 
+          %span.text Odwiedź nas:
+          %br
+          ul. Modrzejewska 8, 
+          %br
+          31-315 Kraków
+        .clearfix
+      .clearfix
+    
+  .clearfix

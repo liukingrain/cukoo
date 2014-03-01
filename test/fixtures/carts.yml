@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  email: MyString
+  step: MyString
+  shipping_address_id: MyString
+  shipping_method: MyString
+  payment_method: MyString
+  billing_address_id: 1
+  invoice: false
+  custom_billing_address: false
+  comment: MyText
+
+two:
+  user_id: 1
+  email: MyString
+  step: MyString
+  shipping_address_id: MyString
+  shipping_method: MyString
+  payment_method: MyString
+  billing_address_id: 1
+  invoice: false
+  custom_billing_address: false
+  comment: MyText

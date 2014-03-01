@@ -1,0 +1,14 @@
+%section.cart-wrapper
+  = render "cart/summary", resource: @step
+  
+  = simple_form_for @step.model, method: :patch do |f|
+    .inputs
+      = f.input :terms, as: :boolean, label: false, inline_label: true
+    .clearfix
+    .actions
+      .form-button
+        = button_tag t(".confirm"), type: "submit", class: "orange-button"
+      .form-link
+        lub
+        = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+    

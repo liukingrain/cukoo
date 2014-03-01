@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  cart_id: 1
+  email: MyString
+  status: MyString
+  shipping_address_id: 1
+  shipping_method: MyString
+  shipping_price: 1.5
+  payment_method: MyString
+  auth_token: MyString
+  billing_address_id: 1
+  comment: MyText
+  invoice: false
+  custom_billing_address: false
+
+two:
+  user_id: 1
+  cart_id: 1
+  email: MyString
+  status: MyString
+  shipping_address_id: 1
+  shipping_method: MyString
+  shipping_price: 1.5
+  payment_method: MyString
+  auth_token: MyString
+  billing_address_id: 1
+  comment: MyText
+  invoice: false
+  custom_billing_address: false

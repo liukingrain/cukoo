@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shipping_method: MyString
+  rate: 1.5
+  free_of_charge_treshold: 1.5
+
+two:
+  shipping_method: MyString
+  rate: 1.5
+  free_of_charge_treshold: 1.5

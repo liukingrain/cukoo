@@ -1,0 +1,9 @@
+%ul.products
+  - @products.each do |product|
+    %li
+      = image_tag products.picture.default
+      .info
+        %span= product.name
+        %span.fabric= product.fabric
+        %span.price= product.price
+        %span.cart Dodaj
