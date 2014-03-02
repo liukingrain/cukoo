@@ -11,9 +11,10 @@
         %p Currently waiting confirmation for: 
         = resource.unconfirmed_email
 
-      = f.input :password, :autocomplete => "off", :hint => "Pozostaw to pole puste, jeżeli nie chcesz dokonywać zmian.", :required => false
-      = f.input :password_confirmation, :required => false
-      = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+      = f.input :password, :autocomplete => "off", label: "Nowe hasło", :hint => "Pozostaw to pole puste, jeżeli nie chcesz dokonywać zmian", :required => false
+      = f.input :password_confirmation, :required => false, label: "Powtórz nowe hasło"
+      = f.input :current_password, :hint => "Potrzebujemy Twojego starego hasła, aby potwierdzić zmiany", :required => true
 
     .form-actions
       = f.button :submit, "Aktualizuj konto"
+    .clearfix

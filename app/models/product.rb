@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
   
+  FILTERS = %w(products)
+  
   scope :bedclothes, -> { where("product_type = ?", "bedclothes") }
   scope :sheet, -> { where("product_type = ?", "sheet") }
   scope :blanket, -> { where("product_type = ?", "blanket") }

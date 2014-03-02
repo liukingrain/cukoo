@@ -1,18 +1,49 @@
 @import "mixins"
 
+.popover-overlay
+  position: fixed
+  background-color: rgba(0,0,0,0.2)
+  z-index: 20
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  display: none
+  &.visible
+    display: block
+  
+  
+
+
 .popup-wrapper
   position: absolute
-  top: 10px
-  right: 0
-  max-width: 200px
+  top: 20%
+  left: 50%
+  margin-left: -125px
+  max-width: 250px
+  width: 100%
   background-color: white
-  padding: 10px 15px 15px 15px
+  padding: 25px 25px 25px 25px
   border: 1px solid $base-color
   +box-shadow
-  z-index: -1
-  opacity: 0
+  z-index: 21
+  .close
+    width: 16px
+    height: 16px
+    background-color: $base-color
+    text-decoration: none
+    position: absolute
+    top: 6px
+    right: 6px
+    border-radius: 3px
+    &:after
+      content: "×"
+      color: white
+      position: absolute
+      top: -2px
+      left: 4px
   input[type=password], input[type=email]
-    width: 178px
+    width: 228px
   input[type=checkbox]
     margin-right: 10px
   input[type=submit], .facebook
@@ -30,10 +61,11 @@
     border-bottom: 1px dotted #cacaca
     color: $base-color
     padding-bottom: 10px
-  &.active
+  &.visible
     opacity: 1
     top: 30px
     transition: all, 0.4s
+    transition-delay: 0.4s
     z-index: 3
   .facebook
     text-decoration: none
@@ -44,11 +76,15 @@
     &:hover
       background-color: #30467C
     
+    
 .devise-links
   text-align: center
-  margin-top: 5px
+  margin-top: 15px
   a
     padding: 2px 0
     display: block
     color: $light-grey
     font-size: 12px
+    
+
+  

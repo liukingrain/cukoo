@@ -37,6 +37,7 @@ pl:
         custom_billing_address: "Inne dane do faktury"
         invoice: "Chcę otrzymać fakturę"
       user:
+        current_password: "Stare hasło"
         password: "Hasło"
         email: "Email"
         password_confirmation: "Powtórz hasło"

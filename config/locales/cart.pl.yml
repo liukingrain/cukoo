@@ -5,6 +5,7 @@ pl:
     form:
       delete: "Usuń"
       confirm_cart: "Zamawiam"
+    summary: "Przejdź do podsumowania"
   cart_steps:
     authentication:
       login: "Zaloguj się"

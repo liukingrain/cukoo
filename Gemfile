@@ -73,15 +73,18 @@ group :development do
   gem "quiet_assets"
 end
 
+# Search
+gem 'thinking-sphinx', '~> 3.0.2',
+  :git    => 'git://github.com/pat/thinking-sphinx.git',
+  :branch => 'master',
+  :ref    => '1fcafe1'  
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+# Deployment
+group :development do
+  gem "capistrano"
+  gem "capistrano_colors"
+  gem "rvm-capistrano"
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+# Bug reports
+gem "newrelic_rpm"

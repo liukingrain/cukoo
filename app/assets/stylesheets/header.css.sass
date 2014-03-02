@@ -75,7 +75,7 @@ header.main-header
         padding-top: 15px
         transition: all 0.2s ease-in-out
       > div
-        padding: 5px
+        padding: 0 5px 5px 5px
     ul.sub-category
       background-color: white
       width: 140px
@@ -115,3 +115,24 @@ header.main-header
       float: left
       margin-right: 15px
             
+  /* Stylowanie searchera */
+      
+  .search-wrapper
+    position: relative
+    &:after
+      content: ""
+      background-image: url("small-icons-sprite.svg")
+      height: 28px
+      width: 28px
+      position: absolute
+      right: 0
+      top: -2px
+      background-repeat: no-repeat
+      background-position: -224px 0
+    input
+      padding: 4px 10px
+      &:focus
+        background-color: white
+      
+      
+  /* Koniec stylowania searchera */

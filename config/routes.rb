@@ -45,6 +45,8 @@ Sklep::Application.routes.draw do
   resources :cart_items, only: [:create]
   resources :orders, only: [:show, :index, :update]
 
+  get "search", to: "search#index"
+  get "search/autocomplete", to: "search#autocomplete", as: "search_autocomplete"
 
   
   

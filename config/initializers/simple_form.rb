@@ -5,44 +5,44 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
-    ## Extensions enabled by default
-    # Any of these extensions can be disabled for a
-    # given input by passing: `f.input EXTENSION_NAME => false`.
-    # You can make any of these extensions optional by
-    # renaming `b.use` to `b.optional`.
+  config.wrappers :default, class: :input, hint_class: :hints, error_class: :errors do |b|
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
     b.use :html5
-
-    # Calculates placeholders automatically from I18n
-    # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
+    b.use :pattern
+    b.use :min_max
+    b.use :maxlength
+    b.use :readonly
 
-    ## Optional extensions
-    # They are disabled unless you pass `f.input EXTENSION_NAME => :lookup`
-    # to the input. If so, they will retrieve the values from the model
-    # if any exists. If you want to enable the lookup for any of those
-    # extensions by default, you can change `b.optional` to `b.use`.
+    b.wrapper :label, tag: "div", class: "label" do |component|
+      component.use :label
+      component.use :hint, wrap_with: { tag: :span, class: :hint }
+      component.use :error, wrap_with: { tag: :span, class: :error }
+    end
+    
+    b.wrapper :field, tag: "div", class: "field" do |component|
+      component.use :input
+    end
+  end
+  
+  config.wrappers :horizontal, class: :input, hint_class: :hints, error_class: :errors do |b|
 
-    # Calculates maxlength from length validations for string inputs
-    b.optional :maxlength
+    b.use :html5
+    b.use :placeholder
+    b.use :pattern
+    b.use :min_max
+    b.use :maxlength
+    b.use :readonly
 
-    # Calculates pattern from format validations for string inputs
-    b.optional :pattern
-
-    # Calculates min and max from length validations for numeric inputs
-    b.optional :min_max
-
-    # Calculates readonly automatically from readonly attributes
-    b.optional :readonly
-
-    ## Inputs
-    b.use :label_input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.wrapper :label, tag: "div", class: "label" do |component|
+      component.use :label
+      component.use :error, wrap_with: { tag: :span, class: :error }
+    end
+    
+    b.wrapper :field, tag: "div", class: "field" do |component|
+      component.use :input
+      component.use :hint, wrap_with: { tag: :span, class: :hint }
+    end
   end
 
   # The default wrapper to be used by the FormBuilder.

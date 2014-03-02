@@ -1,0 +1,6 @@
+%h2 Wyniki wyszukiwania:
+
+%ul
+  - @search_results.each do |result|
+    %li
+      = result.name
