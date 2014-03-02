@@ -1,24 +1,22 @@
 require "bundler/capistrano"
 require "capistrano_colors"
 load "deploy/assets"
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+require "thinking_sphinx/capistrano"
+# set :whenever_command, "bundle exec whenever"
+# require "whenever/capistrano"
 
 set :application, "wdomunajlepiej"
 
-set :stages, %w(production staging)
-set :default_stage, "staging"
-require "capistrano/ext/multistage"
+set :deploy_to, "/home/wdomunajlepiej/www/application"
 
-role :app, "lunchtime.megivps.pl"
-role :web, "lunchtime.megivps.pl"
-role :db,  "lunchtime.megivps.pl", primary: true
+role :app, "wdomunajlepiej.megiteam.pl"
+role :web, "wdomunajlepiej.megiteam.pl"
+role :db,  "wdomunajlepiej.megiteam.pl", primary: true
 
-set :user, "lunchtime"
+set :user, "wdomunajlepiej"
 
 set :scm, "git"
 set :repository, "git@annawojcieszek.com:#{application}.git"
-set :deploy_via, :remote_cache
 
 set :use_sudo, false
 
@@ -39,9 +37,10 @@ namespace :deploy do
   
   desc "Linkuje wspoldzielone pliki: konfiguracyjne i z uploadowanymi plikami"
   task :symlink_shared do
-    run "ln -nfs #{shared_path}/.environment #{release_path}/.environment"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/smtp.yml #{release_path}/config/smtp.yml"
     run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
+    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
   end
   
   # Żeby się assety niepotrzebnie nie precompilowały
@@ -70,4 +69,6 @@ end
 
 before "bundle:install", "deploy:symlink_shared"
 after "deploy:assets:precompile", "deploy:static_error_pages:generate"
-after "deploy:update", "newrelic:notice_deployment"
+
+before "deploy:update_code", "thinking_sphinx:stop"
+after  "deploy:update_code", "thinking_sphinx:start"
