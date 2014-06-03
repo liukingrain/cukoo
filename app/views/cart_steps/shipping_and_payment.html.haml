@@ -20,6 +20,7 @@
       .actions
         .form-button
           = button_tag t("cart.summary"), type: "submit", class: "button"
-        .form-link
-          lub
-          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .form-link.prev-step
+          = link_to "Wróć do poprzedniego kroku", cart_step_path(@step.previous)
+          
+        .clearfix

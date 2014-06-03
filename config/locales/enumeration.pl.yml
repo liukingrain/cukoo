@@ -12,6 +12,7 @@ pl:
       shipping_method:
         courier: "Kurier"
         post: "Poczta Polska"
+        personal_receipt: "Odbiór osobisty"
       payment_method:
         cash_on_delivery: "Płatność przy odbiorze"
         pay_u: "Płatność przez PayU"

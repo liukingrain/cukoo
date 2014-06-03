@@ -1,15 +1,12 @@
 .cart-item
-  .cover-background= item.product_type
-  .wrapper
-    .count-line
-      .description
-
-    .price-wrapper
-      .amount
-        = item.quantity
-        x
-      .unit-price
-        = format_price item.product_price
-      .book-price
-        = format_price item.amount_due
+  .item-name= item.product_name
+  .price-wrapper
+    .amount
+      = item.quantity
+      x
+    .unit-price
+      = format_price item.product_price
+    .item-summary
+      = "="
+      = format_price item.amount_due
 .clearfix

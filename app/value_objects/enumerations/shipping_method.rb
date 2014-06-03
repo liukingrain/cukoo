@@ -1,6 +1,6 @@
 class Enumerations::ShippingMethod < Enumerations::Base
   def self.options
-    @options ||= %w(courier post)
+    @options ||= %w(courier post personal_receipt)
   end
   
   def options

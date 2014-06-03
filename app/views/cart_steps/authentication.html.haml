@@ -11,8 +11,8 @@
       .actions
         .form-button  
           = button_tag t(".login"), type: "submit", class: "button"
-        .form-link
-          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .form-link.prev-step
+          = link_to "Wróć do poprzedniego kroku", cart_step_path(@step.previous)
         .clearfix
   %section.register{ data: { role: "cart-section-register" } }
     = simple_form_for @step.user, url: user_registration_path(return_url: cart_step_url(@step.next)) do |f|
@@ -23,8 +23,8 @@
       .actions
         .form-button  
           = button_tag t(".register"), type: "submit", class: "button"
-        .form-link
-          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .form-link.prev-step
+          = link_to "Wróć do poprzedniego kroku", cart_step_path(@step.previous)
         .clearfix
   %section.guest{ data: { role: "cart-section-guest" } }
     = simple_form_for @step.model, method: :patch do |f|
@@ -33,6 +33,6 @@
       .actions
         .form-button  
           = button_tag t(".guest"), type: "submit", class: "button"
-        .form-link
-          = link_to "wróć do poprzedniego kroku", cart_step_path(@step.previous)
+        .form-link.prev-step
+          = link_to "Wróć do poprzedniego kroku", cart_step_path(@step.previous)
         .clearfix

@@ -36,6 +36,7 @@ pl:
         comment: "Komentarz do zamówienia"
         custom_billing_address: "Inne dane do faktury"
         invoice: "Chcę otrzymać fakturę"
+        terms: "Znam i akceptuję <a href='/regulamin' target='_blank'>regulamin sklepu</a> oraz politykę prywatności."
       user:
         current_password: "Stare hasło"
         password: "Hasło"

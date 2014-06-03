@@ -1,0 +1,7 @@
+pl:
+  routes:
+    products: "produkty"
+    cart: "koszyk"
+    steps: "krok"
+    confirmation: "potwierdzenie"
+    bedclothes: "posciele"

@@ -4,9 +4,14 @@
   background-color: $light-background-grey
   color: $light-grey
   text-align: center
-  padding: 5px 0
   margin-top: 10px
   position: relative
+  height: 28px
+  line-height: 28px
+  &.hidden
+    height: 0px
+    overflow: hidden
+    transition: height 0.4s ease-in
   
 .close-notice
   position: absolute
@@ -16,6 +21,7 @@
   height: 18px
   width: 18px
   right: 5px
+  top: 5px
   text-decoration: none
   font-size: 14px
   border-radius: 2px

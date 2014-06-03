@@ -134,17 +134,88 @@ section.authentication
       margin-top: 20px
     .form-button
       float: right
-    .form-link
-      float: left
-      a
-        display: block
-        background-color: $light-background-grey
-        color: $grey
-        text-decoration: none
-        height: 25px
-        line-height: 25px
-        padding: 0 10px
-        &:hover
-          background-color: $hover-light-grey
   
 /* Koniec autentykacji */
+      
+/* Płatność i dostawa */
+      
+.container.shipping-and-payment
+  .wrapper
+    padding: 0 100px
+    form
+      border: 1px solid $base-color
+      padding: 20px 40px
+  .billing-address[data-role=togglable-wrapper]
+    height: 50px
+    overflow: hidden
+    &.visible
+      height: 420px
+      
+  textarea
+    padding: 8px 10px
+    border: none
+    border: 1px solid #cacaca
+    font-style: italic
+    width: 319px
+    min-height: 100px
+    &:focus
+      outline: none
+      box-shadow: 0 0 1px 1px $base-color
+      background-color: #F4F9F7
+      
+  .button
+    float: right
+    
+  label.radio
+    margin-right: 30px
+  
+  .actions
+    margin-top: 20px
+    
+/* Koniec płatności i dostawy */
+    
+section.confirmation
+  padding: 0 100px
+  .confirmation-wrapper
+    border: 1px solid $base-color
+    padding: 20px 40px
+    .button
+      float: right
+    .addresses
+      dt
+        width: 30%
+        float: left
+        line-height: 22px
+      dd
+        width: 70%
+        line-height: 22px
+  .item-name
+    float: left
+  .price-wrapper
+    float: right
+    .amount, .unit-price, .item-summary
+      float: left
+    .unit-price
+      padding: 0 6px
+  .cart-summary
+    margin-top: 40px
+    table
+      float: right
+      th
+        font-weight: bold
+        color: $base-color
+        padding: 10px 0
+      tr
+      td
+        text-align: right
+        padding: 5px 15px
+        border: 1px solid $base-color
+  label.checkbox
+    float: right
+    
+/* Potwierdzenie */
+    
+
+
+    
+/* Koniec potwierdzenia */    

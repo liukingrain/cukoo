@@ -67,9 +67,11 @@ gem "pundit"
 
 # Debugging
 group :development do
+  gem "pry-rails"
   gem "letter_opener"
   gem "better_errors"
   gem "binding_of_caller"
+  gem "pry-stack_explorer"
   gem "quiet_assets"
 end
 
@@ -82,7 +84,6 @@ gem 'thinking-sphinx', '~> 3.0.2',
 # Deployment
 group :development do
   gem "capistrano"
-  gem "capistrano_colors"
   gem "rvm-capistrano"
 end
 
