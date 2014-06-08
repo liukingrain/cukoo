@@ -5,14 +5,10 @@
     %span.triangle
   .clearfix
   %section.filters
-    %h2 Filtruj produkty
-    .content
-  
+    %h2 Filtruj produkty    
     .filter
-      .name Kolor:
-    
-    .filter
-      .name Rozmiar:
-    
-    .filter
-      .name Rozmiar:
+      = simple_form_for @product_search, url: "", method: :get, as: "" do |f|
+        = f.input :q, placeholder: "Szukana fraza", label: false, input_html: { name: "q" }
+        = f.input :size_id, input_html: { name: "size_id"}
+        =# f.input :order, as: :hidden
+        = f.submit "Szukaj", class: "button grey"

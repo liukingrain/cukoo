@@ -8,7 +8,7 @@ class Enumerations::Base
       before_validation :"set_default_#{column}" if options[:default]
       before_create :"set_default_#{column}" if options[:default]
       
-      validates column, inclusion: { in: enumeration } if options[:validate]
+      validates column, inclusion: { in: enumeration }, allow_blank: options[:allow_blank] if options[:validate]
 
       if options[:store_attribute].blank?
         class_eval <<-RUBY
@@ -34,7 +34,7 @@ class Enumerations::Base
 
       class_eval <<-RUBY
         def #{column}
-          @#{column} ||= #{enumeration.to_s}.new(self, :#{column})
+          @#{column} ||= #{enumeration.to_s}.new(self, :#{column}, #{options[:allow_blank]})
         end
         
         def #{column}=(value)
@@ -57,7 +57,8 @@ class Enumerations::Base
   end
 
   attr_reader :model, :column
-  attr_accessor :value
+  attr_accessor :value, :allow_blank
+  delegate :blank?, :present?, :in?, to: :value
   
   def self.options
     @options ||= %w()
@@ -73,9 +74,10 @@ class Enumerations::Base
     @value = option_is_integer? ? value.to_i : value
   end
   
-  def initialize(model, column)
+  def initialize(model, column, allow_blank = false)
     @model = model
     @column = column
+    @allow_blank = allow_blank
     
     read_identifier
   end
@@ -113,7 +115,9 @@ class Enumerations::Base
   private
   
   def humanize(option)
-    I18n.t("enumerations.#{model.class.model_name.singular}.#{column}.#{option}")
+    if option.present?
+      I18n.t("enumerations.#{model.class.model_name.singular}.#{column}.#{option}")
+    end
   end
   
   def option_class

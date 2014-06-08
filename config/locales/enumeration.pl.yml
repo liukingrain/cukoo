@@ -8,6 +8,16 @@ pl:
         bathrobe: "szlafrok"
         bedspread: "narzuta"
         pillowslip: "poszewka"
+    product_size:
+      kind:
+        large: "200x220"
+        medium: "180x200"
+        small: "160x200"
+    product_search:
+      size:
+        small: "160x200"
+        medium: "180x200"
+        large: "200x220"
     cart:
       shipping_method:
         courier: "Kurier"
@@ -19,3 +29,4 @@ pl:
     order:
       status:
         new: "nowe"
+    
