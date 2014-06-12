@@ -4,7 +4,7 @@ class ProductSearch
   extend Enumerations::Base::Mount
   
   ORDERS = %w(created_at)
-  ATTRRIBUTES = %i(q page limit size_id fabric color)
+  ATTRRIBUTES = %i(q limit size_id type_id fabric color)
                    
   ATTRRIBUTES.each do |attribute|
     attr_accessor attribute
@@ -23,11 +23,12 @@ class ProductSearch
   
   def resolve
     filter_by_size
+    filter_by_type
     #filter_by_fabric
     #filter_by_color
     #filter_with_complex_filters
-    #search_q_and_paginate
-    order_sphinx_scope
+    search_q_and_paginate
+    #order_sphinx_scope
   end
   
   def to_key
@@ -61,8 +62,8 @@ class ProductSearch
   
   def to_params
     { q: q,
-      page: page,
       size_id: size_id,
+      type_id: type_id,
       fabric: fabric,
       color: color,
       order: order }.select{ |k,v| !v.blank? }
@@ -94,12 +95,15 @@ class ProductSearch
   private
   
   def filter_by_size
-    sphinx_scope.search conditions: { size_id: size_id }
+    sphinx_scope.search with: { size_id: size_id } if size_id.present?
   end
-
+  
+  def filter_by_type
+    sphinx_scope.search with: { type_id: type_id } if type_id.present?
+  end
   
   def search_q_and_paginate
-    sphinx_scope.search conditions: { "(title,description)" => q }, page: page, per_page: limit
+    sphinx_scope.search conditions: { "(name,description)" => q }, per_page: limit#, page: page, per_page: limit
   end
   
   def filter_with_complex_filters

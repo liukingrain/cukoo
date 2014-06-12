@@ -119,20 +119,24 @@ header.main-header
       
   .search-wrapper
     position: relative
-    &:after
-      content: ""
-      background-image: url("small-icons-sprite.svg")
-      height: 28px
-      width: 28px
+    input
+      padding: 4px 10px
+      float: left
+      &:focus
+        background-color: white
+    .search-input
+      margin-right: 80px
+    .search-button
       position: absolute
       right: 0
       top: -2px
+      background-image: url("small-icons-sprite.svg")
+      height: 28px
+      width: 28px
       background-repeat: no-repeat
       background-position: -224px 0
-    input
-      padding: 4px 10px
-      &:focus
-        background-color: white
-      
+      background-color: transparent
+      border: none
+    
       
   /* Koniec stylowania searchera */

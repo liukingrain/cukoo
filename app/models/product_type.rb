@@ -1,4 +1,4 @@
-class ProductSize < ActiveRecord::Base
+class ProductType < ActiveRecord::Base
   has_many :products
   
   validates :kind, uniqueness: true, presence: true

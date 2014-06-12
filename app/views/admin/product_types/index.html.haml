@@ -1,0 +1,8 @@
+- content_for :actions do
+  = link_to new_admin_product_type_path, class: "btn btn-default" do
+    %i.icon-plus-sign
+    Dodaj typ produktu
+
+- @product_types.each do |type|
+  = type.id
+  = type.kind 

@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :size, class_name: "ProductSize"
+  belongs_to :type, class_name: "ProductType"
   
   scope :bedclothes, -> { where("product_type = ?", "bedclothes") }
   scope :sheet, -> { where("product_type = ?", "sheet") }
@@ -11,16 +12,8 @@ class Product < ActiveRecord::Base
   
   mount_uploader :picture, PictureUploader
   
-  mount_enumeration :product_type, Enumerations::ProductType
-  
-  accepts_nested_attributes_for :size
-  
   def colors
     %w(różowy niebieski biały szary zielony fioletowy żółty czerwony czarny brązowy)
-  end
-  
-  def size
-    super || build_size(product_id: id)
   end
   
 end

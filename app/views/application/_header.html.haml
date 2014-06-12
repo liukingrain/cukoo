@@ -9,10 +9,10 @@
       - else
         %li= link_to "Zaloguj się", new_user_session_path, rel: "popover"
         %li= link_to "Zarejestruj się", new_user_registration_path, rel: "popover"
-      %li
-        .search-wrapper
-          = form_tag search_url, method: :get, data: { autocomplete_url: search_autocomplete_path } do
-            = text_field_tag :q, @search_query, placeholder: "Czego szukasz?", class: "ribbon-placeholder search-input", data: { role: "search-input" }
+  .search-wrapper
+    = simple_form_for ProductSearch.new, url: "", method: :get, as: "", data: { autocomplete_url: search_autocomplete_path } do |f|
+      = f.input :q, placeholder: "Czego szukasz?", class: "ribbon-placeholder search-input", label: false, input_html: { name: "q", data: { role: "search-input" } }
+      = f.submit "", class: "search-button"
   .clearfix
   = link_to cart_path do
     %section.cart

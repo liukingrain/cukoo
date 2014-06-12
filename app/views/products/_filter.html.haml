@@ -8,7 +8,6 @@
     %h2 Filtruj produkty    
     .filter
       = simple_form_for @product_search, url: "", method: :get, as: "" do |f|
-        = f.input :q, placeholder: "Szukana fraza", label: false, input_html: { name: "q" }
-        = f.input :size_id, input_html: { name: "size_id"}
-        =# f.input :order, as: :hidden
+        = f.input :size_id, collection: ProductSize.all, value_method: :id, label_method: :kind, input_html: { name: "size_id"}
+        = f.input :type_id, collection: ProductType.all, value_method: :id, label_method: :kind, input_html: { name: "type_id"}
         = f.submit "Szukaj", class: "button grey"
