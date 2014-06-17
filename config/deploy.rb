@@ -7,7 +7,7 @@ role :app, %w{cuckoo@cuckoo.megiteam.pl}
 role :web, %w{cuckoo@cuckoo.megiteam.pl}
 role :db,  %w{cuckoo@cuckoo.megiteam.pl}
 
-set :rvm_ruby_version, "2.0.0@wwwcuckoo"
+set :rvm_ruby_version, "2.0.0@cuckoo"
 
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
