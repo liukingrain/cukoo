@@ -1,74 +1,52 @@
-require "bundler/capistrano"
-require "capistrano_colors"
-require "new_relic/recipes"
-load "deploy/assets"
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+set :application, "cuckoo"
+set :repo_url, "git@nibynic.com:cuckoo.git"
 
-set :application, "lunchtime"
+set :tmp_dir, "/home/cuckoo/www/tmp"
 
-set :stages, %w(production staging)
-set :default_stage, "staging"
-require "capistrano/ext/multistage"
+role :app, %w{cuckoo@cuckoo.megiteam.pl}
+role :web, %w{cuckoo@cuckoo.megiteam.pl}
+role :db,  %w{cuckoo@cuckoo.megiteam.pl}
 
-role :app, "wdomunajlepiej.megiteam.pl"
-role :web, "wdomunajlepiej.megiteam.pl"
-role :db,  "wdomunajlepiej.megiteam.pl", primary: true
+set :rvm_ruby_version, "2.0.0@wwwcuckoo"
 
-set :user, "wdomunajlepiej"
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
-set :scm, "git"
-set :repository, "git@annawojcieszek.com:#{application}.git"
-set :deploy_via, :remote_cache
+# set :format, :pretty
+set :log_level, :info
+# set :pty, true
 
-set :use_sudo, false
+set :linked_files, %w{config/database.yml config/application.yml .environment}
+set :linked_dirs, %w{log tmp public/uploads db/sphinx public/sitemaps}
+
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :keep_releases, 5
 
 namespace :deploy do
-  desc "Uruchamia aplikację"
-  task :start do 
-    run "appctl restart #{application}"
-  end
-  
-  desc "Restartuje aplikację"
-  task :restart do
-    run "appctl restart #{application}"
-  end
 
-  desc "Zatrzymuje aplikację"
-  task :stop do
-  end
-  
-  desc "Linkuje wspoldzielone pliki: konfiguracyjne i z uploadowanymi plikami"
-  task :symlink_shared do
-    run "ln -nfs #{shared_path}/.environment #{release_path}/.environment"
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
-  end
-  
-  # Żeby się assety niepotrzebnie nie precompilowały
-  namespace :assets do
-    task :precompile, roles: :web, except: { no_release: true } do
-      from = source.next_revision(current_revision)
-      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-      else
-        logger.info "Skipping asset pre-compilation because there were no asset changes"
-      end
+  desc "Restart application"
+  task :restart do
+    on roles(:app) do
+      execute "appctl restart #{fetch(:application)}"
     end
   end
-  
+
+  after :finishing, "deploy:cleanup"
+
   namespace :static_error_pages do
-    task :generate, roles: :web, except: { no_release: true } do
-      # from = source.next_revision(current_revision)
-      # if capture("cd #{latest_release} && #{source.local.log(from)} app/views/errors/ | wc -l").to_i > 0
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} generate_static_error_pages}
-      # else
-      #   logger.info "Skipping static error pages generations because there were no changes"
-      # end
+    task :generate do
+      on roles(:web) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :rake, "generate_static_error_pages"
+          end
+        end
+      end
     end
   end
 end
 
-before "bundle:install", "deploy:symlink_shared"
-after "deploy:assets:precompile", "deploy:static_error_pages:generate"
-after "deploy:update", "newrelic:notice_deployment"
+before "deploy:updating", "thinking_sphinx:stop"
+before "thinking_sphinx:start", "thinking_sphinx:index"
+after  "deploy:restart", "thinking_sphinx:start"
+
+after  "deploy:restart", "deploy:static_error_pages:generate"
