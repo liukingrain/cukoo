@@ -1,74 +1,33 @@
-require "bundler/capistrano"
-require "capistrano_colors"
-require "new_relic/recipes"
-load "deploy/assets"
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+lock '3.2.1'
 
-set :application, "lunchtime"
+set :application, 'cuckoo'
+set :repo_url, 'git@bitbucket.org:wojcieszka/cuckoo.git'
+set :branch, 'master'
+set :user, 'wojcieszka'
 
-set :stages, %w(production staging)
-set :default_stage, "staging"
-require "capistrano/ext/multistage"
+set :deploy_to, '/home/wojcieszka/www/cuckoo'
 
-role :app, "wdomunajlepiej.megiteam.pl"
-role :web, "wdomunajlepiej.megiteam.pl"
-role :db,  "wdomunajlepiej.megiteam.pl", primary: true
+# FIXME: .ruby-{version,gemset} files should be in repository
+set :linked_files, %w{config/database.yml .ruby-version .ruby-gemset}
+set :linked_dirs, %w{public/uploads tmp/pids tmp/cache log}
 
-set :user, "wdomunajlepiej"
+# TODO: Check, why rvm1/capistrano3 can't detect rvm path on his own
+set :rvm1_ruby_version, "2.0.0"
+fetch(:default_env).merge!( rvm_path: "/home/wojcieszka/www/.rvm" )
 
-set :scm, "git"
-set :repository, "git@annawojcieszek.com:#{application}.git"
-set :deploy_via, :remote_cache
-
-set :use_sudo, false
-
+set :tmp_dir, '/home/wojcieszka/www/tmp/cuckoo'
 namespace :deploy do
-  desc "Uruchamia aplikację"
-  task :start do 
-    run "appctl restart #{application}"
-  end
-  
-  desc "Restartuje aplikację"
+  desc "Restart application"
   task :restart do
-    run "appctl restart #{application}"
+    on roles(:app) do
+      execute "appctl restart wojcieszka"
+    end
   end
 
-  desc "Zatrzymuje aplikację"
-  task :stop do
-  end
-  
-  desc "Linkuje wspoldzielone pliki: konfiguracyjne i z uploadowanymi plikami"
-  task :symlink_shared do
-    run "ln -nfs #{shared_path}/.environment #{release_path}/.environment"
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
-  end
-  
-  # Żeby się assety niepotrzebnie nie precompilowały
-  namespace :assets do
-    task :precompile, roles: :web, except: { no_release: true } do
-      from = source.next_revision(current_revision)
-      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-      else
-        logger.info "Skipping asset pre-compilation because there were no asset changes"
-      end
-    end
-  end
-  
-  namespace :static_error_pages do
-    task :generate, roles: :web, except: { no_release: true } do
-      # from = source.next_revision(current_revision)
-      # if capture("cd #{latest_release} && #{source.local.log(from)} app/views/errors/ | wc -l").to_i > 0
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} generate_static_error_pages}
-      # else
-      #   logger.info "Skipping static error pages generations because there were no changes"
-      # end
-    end
-  end
+  # TODO: I've created symlink to home/wojcieszka/www/wojcieszka from
+  #       home/wojcieszka/www/cuckoo/current manually, automate this
+  # task :symlink_shared do
+  #   run "ln -nfs #{shared_path}/.environment #{release_path}/.environment"
+  # end
+
 end
-
-before "bundle:install", "deploy:symlink_shared"
-after "deploy:assets:precompile", "deploy:static_error_pages:generate"
-after "deploy:update", "newrelic:notice_deployment"

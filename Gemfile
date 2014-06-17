@@ -79,12 +79,14 @@ end
 gem 'thinking-sphinx', '~> 3.0.2',
   :git    => 'git://github.com/pat/thinking-sphinx.git',
   :branch => 'master',
-  :ref    => '1fcafe1'  
+  :ref    => '1fcafe1'
 
 # Deployment
 group :development do
   gem "capistrano"
-  gem "rvm-capistrano"
+  gem 'capistrano-rails'
+  gem 'rvm1-capistrano3', require: false
+  gem 'capistrano-bundler'
 end
 
 # Bug reports
