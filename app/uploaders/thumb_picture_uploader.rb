@@ -1,4 +1,4 @@
-class PictureUploader < CarrierWave::Uploader::Base
+class ThumbPictureUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
 
@@ -12,16 +12,8 @@ class PictureUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  version :thumb do
-    process resize_to_fill: [80, 80]
-  end
-  
   version :default do
     process resize_to_fill: [235, 235]
-  end
-  
-  version :large do
-    process resize_to_fill: [674, 330]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

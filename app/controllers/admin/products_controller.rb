@@ -61,8 +61,10 @@ class Admin::ProductsController < AdminController
   private
   
   def product_params 
-    params.require(:product).permit(:name, :product_type, :price, :amount, :fabric, :manufacturer, :description, :bargain, :picture, :size_id,
-      color: [])    
+    params.require(:product).permit(:name, :product_type, :price, :amount, :fabric, :manufacturer, :description, :bargain, :size_id, :bestseller,
+      color: [],
+      picture_attributes: [:full_view, :zoom, :pattern, :full_view_thumb, :zoom_thumb, :pattern_thumb]
+      )    
   end
   
 end

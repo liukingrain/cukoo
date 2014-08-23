@@ -35,7 +35,54 @@ section.products
       color: $light-grey
       font-size: 13px
   
-section.product-details      
+section.product-details
+  .left-column
+    float: left
+  .right-column
+    float: right
+  .full-images-wrapper
+    width: 674px
+    height: 330px
+    overflow: hidden
+    position: relative
+  .full-images
+    +unstyled-list
+    position: absolute
+    li
+      float: left
+  .thumb-images
+    +unstyled-list
+    li
+      float: left
+      position: relative
+      width: 100px
+      height: 100px
+      &:after
+        content: ""
+        position: absolute
+        left: 0 
+        right: 0
+        top: 0
+        bottom: 0
+        background-color: rgba(0,0,0,0.2)
+      &:hover
+        &:after
+          display: none
+      &.active
+        border: 2px solid white
+        +box-shadow
+        width: 96px
+        height: 96px
+        &:after
+          display: none
+        img
+          width: 96px
+          height: 96px
+      a
+        display: block
+      img
+        width: 100px
+        height: 100px
   .large-picture
     float: left
   .details

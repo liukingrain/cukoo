@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610182656) do
+ActiveRecord::Schema.define(version: 20140823115859) do
 
   create_table "addresses", force: true do |t|
     t.string   "city"
@@ -120,6 +120,18 @@ ActiveRecord::Schema.define(version: 20140610182656) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "product_id"
+    t.string   "full_view"
+    t.string   "zoom"
+    t.string   "pattern"
+    t.string   "pattern_thumb"
+    t.string   "zoom_thumb"
+    t.string   "full_view_thumb"
+  end
+
   create_table "pillows", force: true do |t|
     t.string   "size"
     t.float    "price"
@@ -146,13 +158,13 @@ ActiveRecord::Schema.define(version: 20140610182656) do
     t.string   "fabric"
     t.string   "manufacturer"
     t.string   "color"
-    t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
     t.boolean  "bargain"
     t.integer  "size_id"
     t.integer  "type_id"
+    t.boolean  "bestseller"
   end
 
   create_table "shipping_rates", force: true do |t|

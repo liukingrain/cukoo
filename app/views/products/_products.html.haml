@@ -7,7 +7,7 @@ Produkty:
     - products.each do |product|
       = link_to product_path(product) do
         %li
-          = image_tag product.picture.default
+          = image_tag product.picture.full_view_thumb
           .info
             %span= product.name
             %span.fabric

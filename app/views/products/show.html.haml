@@ -1,23 +1,44 @@
 %section.product-details
-  = image_tag @product.picture.large, class: "large-picture"
-  .details
-    %h2= @product.name
-    .description= @product.description
-    .fabric
-      Skład:
-      = @product.fabric
-    .manufacturer
-      Producent:
-      = @product.manufacturer
-    .price
-      Cena:
-      = format_price @product.price
-    .add-to-cart
-      = simple_form_for @cart_item do |f|
-        = f.input :product_id, as: :hidden, input_html: { value: @product.id }
-        = f.input :product_type, as: :hidden, input_html: { value: @product.type }
-        = f.input :product_size, as: :hidden, input_html: { value: @product.size }, label: false
-        = f.button :submit, "Dodaj do koszyka"
+  .left-column
+    .full-images-wrapper
+      %ul.full-images{ data: { role: "images-preview" } }
+        %li{ data: { role: "full-view-preview-1" } }
+          = image_tag @product.picture.full_view, class: "large-picture"
+        %li{ data: { role: "zoom-preview-2" } }
+          = image_tag @product.picture.zoom, class: "large-picture"
+        %li{ data: { role: "pattern-preview-3" } }
+          = image_tag @product.picture.pattern, class: "large-picture"
+          .clearfix
+    %ul.thumb-images{ data: { role: "images-preview-nav" } }
+      %li{ data: { role: "full-view-0" } }
+        = link_to "" do
+          = image_tag @product.picture.full_view_thumb
+      %li{ data: { role: "zoom-1" } }
+        = link_to "" do
+          = image_tag @product.picture.zoom_thumb
+      %li{ data: { role: "pattern-2" } }
+        = link_to "" do
+          = image_tag @product.picture.pattern_thumb
+          
+  .right-column
+    .details
+      %h2= @product.name
+      .description= @product.description
+      .fabric
+        Skład:
+        = @product.fabric
+      .manufacturer
+        Producent:
+        = @product.manufacturer
+      .price
+        Cena:
+        = format_price @product.price
+      .add-to-cart
+        = simple_form_for @cart_item do |f|
+          = f.input :product_id, as: :hidden, input_html: { value: @product.id }
+          = f.input :product_type, as: :hidden, input_html: { value: @product.type }
+          = f.input :product_size, as: :hidden, input_html: { value: @product.size }, label: false
+          = f.button :submit, "Dodaj do koszyka"
   
   
 .clearfix

@@ -49,7 +49,7 @@ Sklep::Application.routes.draw do
 
     get "search", to: "search#index"
     get "search/autocomplete", to: "search#autocomplete", as: "search_autocomplete"
-
+    get "quality", to: "home#quality"
   end
   
 end

@@ -12,25 +12,15 @@
             = product.fabric
           = link_to "zobacz", product_path(product.id), class: "more"
         .photo
-          = image_tag product.picture.large, alt: "sypialnia"    
+          = image_tag product.picture.full_view, alt: "sypialnia"    
 .categories-wrapper
+  %h1 Najchętniej kupowane:
   %ul
-    %li
-      = link_to products_path do
-        .photo= image_tag "temp/posciele.png", alt: "posciele"
-        %h2 Pościele
-    %li
-      = link_to "" do
-        .photo= image_tag "temp/koce.png", alt: "koce"
-        %h2 Koce
-    %li
-      = link_to "" do
-        .photo= image_tag "temp/poszewki.png", alt: "poszewki"
-        %h2 Poszewki
-    %li
-      = link_to "" do
-        .photo= image_tag "temp/szlafroki.png", alt: "szlafroki"
-        %h2 Szlafroki
+    - @products.bestsellers.take(4).each do |product|
+      %li
+        = link_to product_path(product) do
+          .photo= image_tag product.picture.full_view_thumb
+          %h2= product.name
   .clearfix
       
 %ul.advantages
@@ -44,7 +34,7 @@
     = link_to "więcej", "", class: "more"
   %li.advantage
     .advantage-icons.gifts
-    .description Na życzenie Klienta  towar pakujemy jako prezent.
+    .description Na życzenie Klienta towar pakujemy jako prezent.
     = link_to "więcej", "", class: "more"
   %li.advantage.bargains
     .advantage-icons.bargains
