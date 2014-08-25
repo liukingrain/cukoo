@@ -1,52 +1,33 @@
-set :application, "cuckoo"
-set :repo_url, "git@nibynic.com:cuckoo.git"
+lock '3.2.1'
 
-set :tmp_dir, "/home/cuckoo/www/tmp"
+set :application, 'cuckoo'
+set :repo_url, 'git@bitbucket.org:wojcieszka/cuckoo.git'
+set :branch, 'master'
+set :user, 'wojcieszka'
 
-role :app, %w{cuckoo@cuckoo.megiteam.pl}
-role :web, %w{cuckoo@cuckoo.megiteam.pl}
-role :db,  %w{cuckoo@cuckoo.megiteam.pl}
+set :deploy_to, '/home/wojcieszka/www/cuckoo'
 
-set :rvm_ruby_version, "2.0.0@cuckoo"
+# FIXME: .ruby-{version,gemset} files should be in repository
+set :linked_files, %w{config/database.yml .ruby-version .ruby-gemset}
+set :linked_dirs, %w{public/uploads tmp/pids tmp/cache log}
 
-set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+# TODO: Check, why rvm1/capistrano3 can't detect rvm path on his own
+set :rvm1_ruby_version, "2.0.0"
+fetch(:default_env).merge!( rvm_path: "/home/wojcieszka/www/.rvm" )
 
-# set :format, :pretty
-set :log_level, :info
-# set :pty, true
-
-set :linked_files, %w{config/database.yml config/application.yml .environment}
-set :linked_dirs, %w{log tmp public/uploads db/sphinx public/sitemaps}
-
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :keep_releases, 5
-
+set :tmp_dir, '/home/wojcieszka/www/tmp/cuckoo'
 namespace :deploy do
-
   desc "Restart application"
   task :restart do
     on roles(:app) do
-      execute "appctl restart #{fetch(:application)}"
+      execute "appctl restart wojcieszka"
     end
   end
 
-  after :finishing, "deploy:cleanup"
+  # TODO: I've created symlink to home/wojcieszka/www/wojcieszka from
+  #       home/wojcieszka/www/cuckoo/current manually, automate this
+  # task :symlink_shared do
+  #   run "ln -nfs #{shared_path}/.environment #{release_path}/.environment"
+  # end
 
-  namespace :static_error_pages do
-    task :generate do
-      on roles(:web) do
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            execute :rake, "generate_static_error_pages"
-          end
-        end
-      end
-    end
-  end
 end
-
-before "deploy:updating", "thinking_sphinx:stop"
-before "thinking_sphinx:start", "thinking_sphinx:index"
-after  "deploy:restart", "thinking_sphinx:start"
-
-after  "deploy:restart", "deploy:static_error_pages:generate"

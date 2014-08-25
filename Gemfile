@@ -84,7 +84,9 @@ gem 'thinking-sphinx', '~> 3.0.2',
 # Deployment
 group :development do
   gem "capistrano"
-  gem "rvm-capistrano"
+  gem 'capistrano-rails'
+  gem 'rvm1-capistrano3', require: false
+  gem 'capistrano-bundler'
 end
 
 # Bug reports

@@ -1,3 +1,3 @@
 set :stage, :production
-set :branch, :production
-set :deploy_to, "/home/cuckoo/www/application"
+
+server 'wojcieszka.megiteam.pl', user: 'wojcieszka', roles: %w{web app db}
