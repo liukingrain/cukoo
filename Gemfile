@@ -79,7 +79,7 @@ end
 gem 'thinking-sphinx', '~> 3.0.2',
   :git    => 'git://github.com/pat/thinking-sphinx.git',
   :branch => 'master',
-  :ref    => '1fcafe1'  
+  :ref    => '1fcafe1'
 
 # Deployment
 group :development do
