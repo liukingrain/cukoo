@@ -1,7 +1,8 @@
 = simple_form_for [:admin, @product], class: "form-horizontal" do |f|
   .form-group
-  = f.simple_fields_for :picture, @product.picture_of_product do |fd|
+  = f.simple_fields_for :picture, @product.picture do |fd|
     = fd.input :full_view, as: :file, inline_label: 'Pełne zdjęcie'
+    = image_tag(@product.picture.full_view_url) if @product.picture.full_view?
     = fd.input :zoom, as: :file, inline_label: 'Zbliżenie'
     = fd.input :pattern, as: :file, inline_label: 'Wzór'
     = fd.input :full_view_thumb, as: :file, inline_label: 'Pełne zdjęcie - miniatura'

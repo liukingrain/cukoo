@@ -17,11 +17,6 @@ Sklep::Application.routes.draw do
       }
     end
   
-    namespace :products do
-      get "bedclothes", to: "bedclothes#index"
-      get "sheets", to: "sheets#index"
-    end
-  
     resources :products
   
     devise_for :users, controllers: { 
@@ -50,6 +45,10 @@ Sklep::Application.routes.draw do
     get "search", to: "search#index"
     get "search/autocomplete", to: "search#autocomplete", as: "search_autocomplete"
     get "quality", to: "home#quality"
+    get "bargain", to: "products#bargain"
+    get "small_bedclothes", to: "products#small_bedclothes"
+    get "medium_bedclothes", to: "products#medium_bedclothes"
+    get "big_bedclothes", to: "products#big_bedclothes"
   end
   
 end

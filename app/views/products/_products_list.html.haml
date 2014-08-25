@@ -1,0 +1,14 @@
+%section.products
+  - products.in_groups_of(4, false) do |group|
+    %ul.products
+      - group.each do |product|
+        = link_to product_path(product) do
+          %li
+            = image_tag product.picture.full_view_thumb
+            .info
+              %span= product.name
+              %span.fabric
+                Skład:
+                = product.fabric
+              %span.price= format_price(product.price)
+      .clearfix

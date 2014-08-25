@@ -3,7 +3,10 @@ ready = ->
   popoverContainer = $("[data-role~=popover-container]")
   popoverContent = $("[data-role~=popover-content]")
     
+  $("[data-role~=close-popover]").on "click", (e) ->
+    handleClose(e)
     
+  
   $("[rel~=popover]").on "click", (e) ->
     e.preventDefault()
     link = $(e.currentTarget)
@@ -33,6 +36,10 @@ ready = ->
         window.location = @successCallback
     else
       popoverContent.html(jqXHR.responseText)
+      popoverContent.find("[rel~=popover]").on "click", (e) ->
+        e.preventDefault()
+        link = $(e.currentTarget)
+        open(link.attr("href"), link.data("url"), link.data("load-in-popover"))
       if parseInt(jqXHR.getResponseHeader("X-Invalid-Page"))
         @requirePageReload = true
 

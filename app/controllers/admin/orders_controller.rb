@@ -13,6 +13,7 @@ class Admin::OrdersController < AdminController
   
   def show
     @order = Order.find(params[:id])
+    @order = OrderDecorator.decorate(@order)
   end
   
 end

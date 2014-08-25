@@ -85,12 +85,20 @@ ready = ->
     $("[data-role=polymorphic-select]", cart).each (i, el) ->
       $(el).on "change", "[data-role=polymorphic-id]", (e) ->
         $("[data-role=polymorphic-type]", el).val($(e.currentTarget).find(":selected").data("type"))
-        
+  
+  
+    
   $("[data-role~=billing-address-toggler]").on "change", ->
     if $(this).is(":checked")
       $("[data-role~=togglable-wrapper]").addClass "visible"
     else
       $("[data-role~=togglable-wrapper]").removeClass "visible"
+      
+  $("[data-role~=invoice-toggler]").on "change", ->
+    if $(this).is(":checked")
+      $("[data-type~=invoice]").addClass "visible"
+    else
+      $("[data-type~=invoice]").removeClass "visible"
     
 $(document).ready(ready)
 $(document).on('page:load', ready)

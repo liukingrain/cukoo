@@ -18,6 +18,7 @@ class Admin::ProductsController < AdminController
   
   def new
     @product = Product.new
+    @product.picture = Picture.new
   end
   
   def create
@@ -63,7 +64,7 @@ class Admin::ProductsController < AdminController
   def product_params 
     params.require(:product).permit(:name, :product_type, :price, :amount, :fabric, :manufacturer, :description, :bargain, :size_id, :bestseller,
       color: [],
-      picture_attributes: [:full_view, :zoom, :pattern, :full_view_thumb, :zoom_thumb, :pattern_thumb]
+      picture_attributes: [:full_view, :zoom, :pattern, :full_view_thumb, :zoom_thumb, :pattern_thumb, :id]
       )    
   end
   

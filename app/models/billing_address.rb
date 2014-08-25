@@ -2,7 +2,7 @@ class BillingAddress < Address
   has_one :order
   has_one :cart
   
-  validates :city, :country, :postal_code, :street_and_number, presence: true, if: :custom_billing_address?
+  validates :city, :postal_code, :street_and_number, presence: true, if: :custom_billing_address?
   validates :company_name, :company_nip, presence: true, if: :invoice?
     
   def invoice?

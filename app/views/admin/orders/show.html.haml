@@ -1,3 +1,43 @@
-= @order.id
-= @order.email
-= @order.status
+%h1= "Zmówienie nr #{@order.id}"
+
+- unless @order.comment.nil?
+  %dt Komentarz do zamówienia:
+  %dd= @order.comment
+
+%h2 Dane do wysyłki:
+%dl
+  %dt Imię i nazwisko
+  %dd= @order.user_name
+  %dt Adres:
+  %dd= @order.address
+  %dt Numer telefonu:
+  %dd= @order.phone_number
+  
+%h2 Dane do faktury:
+- if @order.invoice.present?
+  - if @order.custom_billing_address.present?
+    %p Dane takie jak przy wysyłce
+  - else
+  %dl
+    %dt Nazwa firmy:
+    %dd= @order.billing_address.company_name
+    %dt NIP
+    %dd= @order.billing_address.company_nip
+    %dt Adres:
+    - if @order.custom_billing_address == false
+      %dd Adres jak przy wysyłce
+    - else
+      %dd 
+        = @order.billing_address.street_and_number
+        = @order.billing_address.postal_code
+        = @order.billing_address.city
+- else
+  %p Użytkownik nie potrzebuje faktury
+  
+%h2 Płatność i dostawa
+%dl
+  %dt Płatność:
+  %dd= @order.payment_method
+  %dt Dostawa:
+  %dd= @order.shipping_method
+

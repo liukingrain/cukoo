@@ -16,7 +16,7 @@
         = f.submit "", class: "search-button"
   .clearfix
   = link_to cart_path do
-    %section.cart
+    %section.cart{ data: { role: "auto-updating" } }
       .small-icon.cart
       .cart-details
         .price{ data: {'initial-value' => current_cart.items_amount_due } }= format_price current_cart.items_amount_due
@@ -25,28 +25,9 @@
         .clearfix
   %nav.main-nav{ data: { role: "main-nav" } }
     %ul.main-category
-      %li{data: {role: "main-category" }}
-        =link_to "Pościele", products_path
-        .sub-category-wrapper{ data: {role: "sub-category" } }
-          %div
-            %ul.sub-category
-              %li=link_to "200x220", "#"
-              %li=link_to "200x200", "#"
-              %li=link_to "160x200", "#"
-              %li=link_to "Bawełna satynowa", "#"
-              %li=link_to "Adamaszek", "#"
-              %li=link_to "Jednokolorowe", "#"
-      %li{ data: {role: "main-category" } }
-        =link_to "Prześcieradła", products_sheets_path
-        .sub-category-wrapper{ data: {role: "sub-category" } }
-          %div
-            %ul.sub-category
-              %li=link_to "200x220", "#"
-              %li=link_to "200x200", "#"
-              %li=link_to "160x200", "#"
-      %li{data: {role: "main-category" }}=link_to "Koce", "#"
-      %li{data: {role: "main-category" }}=link_to "Narzuty", "#"
-      %li{data: {role: "main-category" }}=link_to "Szlafroki", "#"
-      %li{data: {role: "main-category" }}=link_to "Poszewki", "#"
-      %li{data: {role: "main-category" }}=link_to "%Promocje", "#", class: "bargain"
+      %li{data: {role: "main-category" }}=link_to "Wszystkie pościele", products_path
+      %li{data: {role: "main-category" }}=link_to "160x200", small_bedclothes_path
+      %li{data: {role: "main-category" }}=link_to "180x200", medium_bedclothes_path
+      %li{data: {role: "main-category" }}=link_to "200x220", big_bedclothes_path
+      %li{data: {role: "main-category" }}=link_to "%Promocje", bargain_path, class: "bargain"
   = render "notices"
