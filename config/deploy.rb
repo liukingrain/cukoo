@@ -31,3 +31,9 @@ namespace :deploy do
   # end
 
 end
+
+before "deploy:updating", "thinking_sphinx:stop"
+before "thinking_sphinx:start", "thinking_sphinx:index"
+after  "deploy:restart", "thinking_sphinx:start"
+
+after  "deploy:restart", "deploy:static_error_pages:generate"

@@ -76,10 +76,7 @@ group :development do
 end
 
 # Search
-gem 'thinking-sphinx', '~> 3.0.2',
-  :git    => 'git://github.com/pat/thinking-sphinx.git',
-  :branch => 'master',
-  :ref    => '1fcafe1'
+gem 'thinking-sphinx', '~> 3.0.2'
 
 # Deployment
 group :development do
