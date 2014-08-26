@@ -81,10 +81,11 @@ gem 'thinking-sphinx', '~> 3.0.2'
 # Deployment
 group :development do
   gem "capistrano"
-  gem 'capistrano-rails'
-  gem 'rvm1-capistrano3', require: false
-  gem 'capistrano-bundler'
+  gem "capistrano-rails"
+  gem "capistrano-rvm"
+  gem "capistrano-nc"
 end
+
 
 # Bug reports
 gem "newrelic_rpm"
