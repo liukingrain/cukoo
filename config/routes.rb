@@ -46,9 +46,6 @@ Sklep::Application.routes.draw do
     get "search/autocomplete", to: "search#autocomplete", as: "search_autocomplete"
     get "quality", to: "home#quality"
     get "bargain", to: "products#bargain"
-    get "small_bedclothes", to: "products#small_bedclothes"
-    get "medium_bedclothes", to: "products#medium_bedclothes"
-    get "big_bedclothes", to: "products#big_bedclothes"
   end
   
 end
