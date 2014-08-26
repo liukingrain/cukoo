@@ -77,6 +77,7 @@ end
 
 # Search
 gem 'thinking-sphinx', '~> 3.0.2'
+gem "whenever", require: false
 
 # Deployment
 group :development do
