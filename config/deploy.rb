@@ -1,7 +1,7 @@
 lock '3.2.1'
 
 set :application, 'cuckoo'
-set :repo_url, 'git@bitbucket.org:wojcieszka/cuckoo.git'
+set :repo_url, 'git@nibynic.com:cuckoo.git'
 set :branch, 'master'
 set :user, 'wojcieszka'
 
@@ -35,5 +35,4 @@ end
 before "deploy:updating", "thinking_sphinx:stop"
 before "thinking_sphinx:start", "thinking_sphinx:index"
 after  "deploy:restart", "thinking_sphinx:start"
-
 after  "deploy:restart", "deploy:static_error_pages:generate"
