@@ -1,0 +1,8 @@
+namespace :deploy do
+  desc "Restart application"
+  task :restart do
+    on roles(:app) do
+      execute "appctl restart #{fetch(:application)}"
+    end
+  end
+end

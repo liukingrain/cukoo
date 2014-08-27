@@ -1,3 +1,7 @@
-set :stage, :production
+set :application, "wojcieszka"
 
-server 'wojcieszka.megiteam.pl', user: 'wojcieszka', roles: %w{web app db}
+set :stage, :production
+set :branch, :production
+set :deploy_to, "/home/wojcieszka/www/application"
+
+set :rvm_ruby_version, "2.0.0@wojcieszka"

@@ -9,7 +9,7 @@ namespace :thinking_sphinx do
   task :set_rails_env do
     set :rails_env, (fetch(:rails_env) || fetch(:stage))
   end
-    
+
   desc "Generate the Sphinx configuration file."
   task :configure do
     on roles(fetch(:thinking_sphinx_roles)) do
@@ -79,7 +79,6 @@ if you alter the structure of your indexes.
       end
     end
   end
-  after "thinking_sphinx:rebuild", "thinking_sphinx:symlink_indexes"
 
   desc "Create the shared folder for sphinx indexes."
   task :shared_sphinx_folder do
