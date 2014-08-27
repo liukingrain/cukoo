@@ -87,9 +87,9 @@ development:
   <<: *defaults
 production:
   <<: *defaults
-  bin_path: /home/room8/www/sphinx/bin
+  bin_path: /home/wojcieszka/www/sphinx/bin
   mysql41: 9312
 staging:
   <<: *defaults
-  bin_path: /home/room8/www/sphinx/bin
+  bin_path: /home/wojcieszka/www/sphinx/bin
   mysql41: 9313

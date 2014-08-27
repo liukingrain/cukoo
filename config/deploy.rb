@@ -12,7 +12,7 @@ set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 set :log_level, :info
 # set :pty, true
 
-set :linked_files, %w{config/database.yml config/application.yml}
+#set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{log tmp public/uploads db/sphinx}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
