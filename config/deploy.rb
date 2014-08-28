@@ -42,11 +42,9 @@ namespace :deploy do
   end
 end
 
-#after "deploy:restart", "asari_importer:restart"
-
 after "deploy:publishing", "deploy:restart"
 
-#before "deploy:updating", "thinking_sphinx:stop"
+before "deploy:updating", "thinking_sphinx:stop"
 before "thinking_sphinx:start", "thinking_sphinx:index"
 after  "deploy:restart", "thinking_sphinx:start"
 
