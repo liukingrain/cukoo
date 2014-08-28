@@ -22,7 +22,7 @@ body
   display: inline-block
   &:after
     content: ""
-    background-image: url("small-icons-sprite.png")
+    background-image: image-url("small-icons-sprite.png")
     width: 28px
     height: 28px
     background-position: -196px 0
@@ -36,11 +36,11 @@ body
     
   
 .small-icon
-  background-image: url("small-icons-sprite.svg")
+  background-image: image-url("small-icons-sprite.svg")
   width: 28px
   height: 28px
   html.no-svg &
-    background-image: url("small-icons-sprite.png")
+    background-image: image-url("small-icons-sprite.png")
 
 .button
   background-color: $base-color
