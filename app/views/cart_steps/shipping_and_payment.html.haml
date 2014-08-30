@@ -12,9 +12,7 @@
         = f.input :payment_method, as: :radio_enumeration, label: false
         %h2.heading= t("cart_steps.shipping_method")
         = f.input :shipping_method, as: :radio_enumeration, label: false, checked: @step.shipping_method.value
-        %span
-          = t(".delivery_cost")
-          = format_price @step.shipping_price
+
       .clearfix
       
       .actions

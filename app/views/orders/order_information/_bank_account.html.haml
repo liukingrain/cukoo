@@ -1,0 +1,18 @@
+.bank-account-information
+  %h2 Dane do przelewu:
+  %dl
+    %dt Odbiorca:
+    %dd 
+      Elżbieta Wojcieszek "Cuckoo"
+      %br
+      ul. Rydla 57/1a
+      %br
+      30-087 Kraków
+    %dt Numer konta:
+    %dd xxxx-xxxx-xxxx-xxxx
+    %dt Tytuł przelewu:
+    %dd 
+      Zamówienie nr
+      = @order.id
+    %dt Kwota:
+    %dd= @order.amount_due

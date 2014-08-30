@@ -1,23 +1,24 @@
-.billing-address{ data: { role: "togglable-wrapper" } }
+.billing-address
   = f.fields_for :billing_address_attributes, @step.billing_address do |fi| 
     .togglers
       = f.input :invoice, as: :boolean, input_html: { data: { role: "invoice-toggler" } }, label: false, inline_label: true
       
       = f.input :custom_billing_address, as: :boolean, input_html: { data: { role: "billing-address-toggler" } }, wrapper_html: { data: { type: "invoice" }, class: !@step.invoice && "hidden" }, label: false, inline_label: true
       .clearfix
-    %h2.subheading{ class: !@step.custom_billing_address && "hidden", data: { type: "invoice" } }= t("cart_steps.billing_address")
-    %div{ class: !@step.custom_billing_address && "hidden", data: { type: "billing-address" } }
-      .two-inputs
-        = fi.input :first_name
-        = fi.input :last_name
-    .company_data{ class: !@step.invoice && "hidden", data: { type: "invoice" } }
-      .two-inputs
-        = fi.input :company_name
-        = fi.input :company_nip
-    %div{ class: !@step.custom_billing_address && "hidden", data: { type: "billing-address" } }
-      .two-inputs
-        = fi.input :street_and_number
-        = fi.input :city
-      .two-inputs  
-        = fi.input :postal_code
-    .clearfix
+    .toggle{ data: { type: "toggle-content" } }
+      %h2.subheading{ class: !@step.custom_billing_address && "hidden", data: { type: "invoice" } }= t("cart_steps.billing_address")
+      .company-data{ class: !@step.invoice && "hidden", data: { type: "invoice" } }
+        .two-inputs
+          = fi.input :company_name
+          = fi.input :company_nip
+      %div{ class: !@step.custom_billing_address && "hidden", data: { type: "billing-address" } }
+        .two-inputs
+          = fi.input :first_name
+          = fi.input :last_name
+      %div{ class: !@step.custom_billing_address && "hidden", data: { type: "billing-address" } }
+        .two-inputs
+          = fi.input :street_and_number
+          = fi.input :city
+        .two-inputs  
+          = fi.input :postal_code
+      .clearfix

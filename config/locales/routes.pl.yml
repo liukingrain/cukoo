@@ -1,7 +1,9 @@
 pl:
   routes:
-    products: "produkty"
+    authentication: "autentykacja"
+    shipping_and_payment: "platnosc-i-dostawa"
     cart: "koszyk"
-    steps: "krok"
     confirmation: "potwierdzenie"
-    bedclothes: "posciele"
+    products: "produkty"
+    steps: "krok"
+    

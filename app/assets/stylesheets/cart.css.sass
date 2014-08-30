@@ -145,11 +145,19 @@ section.authentication
     form
       border: 1px solid $base-color
       padding: 20px 40px
-  .billing-address[data-role=togglable-wrapper]
-    height: 50px
+  
+  .toggle[data-type=toggle-content]
+    height: 0
     overflow: hidden
-    &.visible
-      height: 420px
+    transition: height 0.5s ease-in
+    &.show-billing-form
+      height: 400px
+      transition: height 0.5s ease-out
+    &.show-company-data
+      height: 150px
+      transition: height 0.5s ease-out
+    &.show-billing-form.show-company-data
+      height: 400px
       
   textarea
     padding: 8px 10px
@@ -179,6 +187,8 @@ section.confirmation
   .confirmation-wrapper
     border: 1px solid $base-color
     padding: 20px 40px
+    .summary
+      margin-bottom: 50px
     .button
       float: right
     .addresses
@@ -212,6 +222,12 @@ section.confirmation
         border: 1px solid $base-color
   label.checkbox
     float: right
+    font-size: 13px
+    padding-bottom: 5px
+  a.terms
+    color: $base-color
+    &:hover
+      color: $hover-base-color
     
 /* Potwierdzenie */
     

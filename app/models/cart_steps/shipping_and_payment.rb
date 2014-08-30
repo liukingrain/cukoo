@@ -28,11 +28,7 @@ class CartSteps::ShippingAndPayment < CartSteps::Base
   
   def require_phone_number?
     true
-    #shipping_method.value == "courier"
-  end
-  
-  def shipping_price
-    12
+    #shipping_method.value == "post"
   end
 
   private  

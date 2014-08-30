@@ -26,6 +26,7 @@ pl:
       payment_method:
         cash_on_delivery: "Płatność przy odbiorze"
         pay_u: "Płatność przez PayU"
+        bank_transfer: "Przelew bankowy"
     order:
       status:
         new: "nowe"

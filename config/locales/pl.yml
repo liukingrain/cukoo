@@ -11,6 +11,6 @@ pl:
   cart_steps:
     address: "Dane do dostawy"
     billing_address: "Dane do faktury"
-    comment: "Komenatarz do zamówienia"
+    comment: "Komentarz do zamówienia"
     payments: "Sposób płatności"
     shipping_method: "Sposób dostawy"

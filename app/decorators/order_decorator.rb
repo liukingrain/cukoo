@@ -1,5 +1,9 @@
 class OrderDecorator < SummaryDecorator
   
+  def amount_due
+    h.format_price(model.amount_due)
+  end
+  
   def user_name
     "#{shipping_address.first_name} #{shipping_address.last_name}"
   end
@@ -14,6 +18,18 @@ class OrderDecorator < SummaryDecorator
   
   def billing_data
     model.invoice.present? ? check_billing_address : "Użytkownik nie chce faktury"
+  end
+  
+  def order_partial
+    if model.shipping_method == "post" && model.payment_method == "cash_on_delivery"
+      "post_without_bank_transfer"
+    elsif model.shipping_method == "post" && model.payment_method == "bank_transfer"
+      "post_with_bank_transfer"
+    elsif model.shipping_method == "personal_receipt" && model.payment_method == "bank_transfer"
+      "personal_with_bank_transfer"
+    elsif model.shipping_method == "personal_receipt" && model.payment_method == "cash_on_delivery"
+      "personal_without_bank_transfer"
+    end
   end
   
   private

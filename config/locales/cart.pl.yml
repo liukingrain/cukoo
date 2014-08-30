@@ -15,5 +15,7 @@ pl:
       empty_cart: "Koszyk jest pusty"
     confirmation: 
       confirm: "Zamawiam"
+      terms: "Znam i akceptuję <a href='/regulamin' target='_blank' class='terms'>regulamin sklepu</a> oraz politykę prywatności."
   summary:
     products: "Zamówione produkty"
+    comment: "Komentarz do zamówienia"

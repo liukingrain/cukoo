@@ -4,7 +4,7 @@
   
     = simple_form_for @step.model, method: :patch do |f|
       .inputs
-        = f.input :terms, as: :boolean, label: false, inline_label: true
+        = f.input :terms, as: :boolean, label: false, inline_label: t(".terms").html_safe
       .clearfix
       .actions
         .form-button

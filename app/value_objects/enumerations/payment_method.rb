@@ -1,6 +1,7 @@
 class Enumerations::PaymentMethod < Enumerations::Base
   def self.options
-    @options ||= %w(pay_u cash_on_delivery)
+    @options ||= %w(bank_transfer cash_on_delivery)
+    #@options ||= %w(pay_u cash_on_delivery)
   end
   
   options.each do |option|

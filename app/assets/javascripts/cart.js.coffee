@@ -90,15 +90,23 @@ ready = ->
     
   $("[data-role~=billing-address-toggler]").on "change", ->
     if $(this).is(":checked")
-      $("[data-role~=togglable-wrapper]").addClass "visible"
+      $("[data-type~=toggle-content]").addClass "show-billing-form"
     else
-      $("[data-role~=togglable-wrapper]").removeClass "visible"
+      $("[data-type~=toggle-content]").removeClass "show-billing-form"
+      
+  if $("[data-type~=toggle-content]").find(".input").hasClass("errors") and $("[data-role~=billing-address-toggler]").is(":checked")
+    $("[data-type~=toggle-content]").addClass "show-billing-form"
       
   $("[data-role~=invoice-toggler]").on "change", ->
     if $(this).is(":checked")
-      $("[data-type~=invoice]").addClass "visible"
+      $("[data-type~=toggle-content]").addClass "show-company-data"
     else
-      $("[data-type~=invoice]").removeClass "visible"
+      $("[data-type~=toggle-content]").removeClass "show-company-data"
+      
+  if $("[data-type~=toggle-content]").find(".input").hasClass("errors") and $("[data-role~=invoice-toggler]").is(":checked")
+    $("[data-type~=toggle-content]").addClass "show-company-data"
+      
+  
     
 $(document).ready(ready)
 $(document).on('page:load', ready)
