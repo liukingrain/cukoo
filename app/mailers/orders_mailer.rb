@@ -1,8 +1,8 @@
 # encoding: utf-8
 class OrdersMailer < ActionMailer::Base
   
-  DEFAULT_FROM = "no-reply@black.pl"
-  DEFAULT_ORDERS_MAIL = "zamowienia@black.pl"
+  DEFAULT_FROM = "no-reply@cukoo.pl"
+  DEFAULT_ORDERS_MAIL = "bok@cukoo.pl"
   
   default from: DEFAULT_FROM, charset: "UTF-8", "reply-to" => DEFAULT_ORDERS_MAIL
 
