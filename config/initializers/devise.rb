@@ -120,7 +120,7 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-  # config.confirmation_keys = [ :email ]
+  config.confirmation_keys = [ :email ]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
@@ -227,7 +227,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, Settings.facebook.app_id, Settings.facebook.secret
+  config.omniauth :facebook, "1406712852919830", "e95a46516732baea76f2455411a7a2ed"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
