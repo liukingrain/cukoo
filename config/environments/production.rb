@@ -70,6 +70,7 @@ Sklep::Application.configure do
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: :true,
     tls: true,
+    openssl_verify_mode: "none",
     address: "smtp.megiteam.pl",
     port: 587,
     domain: "cukoo.pl",
