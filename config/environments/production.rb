@@ -71,7 +71,7 @@ Sklep::Application.configure do
     enable_starttls_auto: :true,
     tls: true,
     address: "smtp.megiteam.pl",
-    port: 465,
+    port: 587,
     domain: "cukoo.pl",
     password: "GDVPPkpphhLk",
     authentication: "login",
