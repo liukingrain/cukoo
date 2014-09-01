@@ -69,10 +69,9 @@ Sklep::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: :true,
-    tls: true,
-    openssl_verify_mode: "none",
+    ssl: true,
     address: "smtp.megiteam.pl",
-    port: 587,
+    port: 465,
     domain: "cukoo.pl",
     password: "GDVPPkpphhLk",
     authentication: "login",
