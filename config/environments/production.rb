@@ -70,7 +70,11 @@ Sklep::Application.configure do
   config.action_mailer.smtp_settings = {
     :address => "smtp.megiteam.pl",
     :port    => "465",
-    :domain  => 'cukoo.pl'
+    :domain  => 'cukoo.pl',
+    :password => 'bjWcKPMrEx5D',
+    :authentication => 'login',
+    :user_name => 'bok@cukoo.pl'
+    
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
