@@ -68,13 +68,14 @@ Sklep::Application.configure do
   config.action_mailer.default_url_options = { host: 'cukoo.pl' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true, 
-    :address => "smtp.megiteam.pl",
-    :port    => "465",
-    :domain  => 'cukoo.pl',
-    :password => 'GDVPPkpphhLk',
-    :authentication => 'login',
-    :user_name => 'bok@cukoo.pl'
+    enable_starttls_auto: :true,
+    tls: true,
+    address: "smtp.megiteam.pl",
+    port: 465,
+    domain: "cukoo.pl",
+    password: "GDVPPkpphhLk",
+    authentication: "login",
+    user_name: "bok@cukoo.pl"
     
   }
 
