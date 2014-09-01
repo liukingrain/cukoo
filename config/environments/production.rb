@@ -68,8 +68,8 @@ Sklep::Application.configure do
   config.action_mailer.default_url_options = { host: 'cukoo.pl' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "185.36.169.172",
-    :port    => 22,
+    :address => "smtp.megiteam.pl",
+    :port    => "465",
     :domain  => 'cukoo.pl'
   }
 
