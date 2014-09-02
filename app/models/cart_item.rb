@@ -4,10 +4,10 @@ class CartItem < ActiveRecord::Base
     
   before_validation :set_default_values
   
-  scope :for, lambda { |product| where(product_id: product.id, product_type: product.class) }
+  scope :for, lambda { |product| where(product_id: product.id, product_type: product.class, product_size: product.size) }
   
   def product_price
-    product.price
+    variant.price
   end
   
   def product_name
@@ -27,11 +27,16 @@ class CartItem < ActiveRecord::Base
     Product.find(product_id)
   end
   
+  def variant
+    product.variants.find_by_size(product_size)
+  end
+  
   private
   
   def set_default_values
     self.quantity ||= 1
   end
+  
   
   
   

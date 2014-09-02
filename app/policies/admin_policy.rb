@@ -1,9 +1,4 @@
 class AdminPolicy < ApplicationPolicy
-  class Scope < Struct.new(:user, :scope)
-    def resolve
-      scope
-    end
-  end  
     
   def create?
     manage?
@@ -23,19 +18,31 @@ class AdminPolicy < ApplicationPolicy
 
   def destroy?
     manage?
-  end 
+  end
+  
+  def sort_order?
+    manage?
+  end
   
   private
   
+  # Sprawdzanie czy użytkownik jest zalogowany jako administrator.
+  def admin?
+    admin_user_signed_in? && user.admin?
+  end
+  
+  # Sprawdzanie czy użytkownik jest zalogowany.
   def admin_user_signed_in?
     user.present?   
-  end 
-
+  end
+  
+  # Użytkownik może zarządzać jeżeli jest zalogowany jako administrator.
   def manage?
     admin_user_signed_in?
   end
   
+  # Użytkownik może czytać jeżeli jest zalogowany jako administrator.
   def read?
     admin_user_signed_in?
-  end  
+  end
 end  

@@ -8,8 +8,8 @@
           %li= link_to "Ustawienia konta", edit_user_registration_path
           %li= link_to "Wyloguj się", destroy_user_session_path, method: :delete
         - else
-          %li= link_to "Zaloguj się", new_user_session_path, rel: "popover"
-          %li= link_to "Zarejestruj się", new_user_registration_path, rel: "popover"
+          %li= link_to "Zaloguj się", new_user_session_path, class: "open_popup"
+          %li= link_to "Zarejestruj się", new_user_registration_path, class: "open_popup"
     .search-wrapper
       = simple_form_for ProductSearch.new, url: "", method: :get, as: "", data: { autocomplete_url: search_autocomplete_path } do |f|
         = f.input :q, placeholder: "Czego szukasz?", class: "ribbon-placeholder search-input", label: false, input_html: { name: "q", data: { role: "search-input" } }

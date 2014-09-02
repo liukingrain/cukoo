@@ -3,8 +3,9 @@ Sklep::Application.routes.draw do
     root "home#index"
 
     namespace :admin do
-      resources :products
-      resources :product_sizes
+      resources :products do
+        resources :variants
+      end
       resources :product_types
       root to: "home#index"
       resources :users

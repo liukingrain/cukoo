@@ -1,4 +1,5 @@
 class Admin::ProductsController < AdminController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   
   def index
     @q = Product.ransack(params[:q])
@@ -13,7 +14,6 @@ class Admin::ProductsController < AdminController
   end
   
   def show
-    @product = Product.find(params[:id])
   end
   
   def new
@@ -34,11 +34,9 @@ class Admin::ProductsController < AdminController
   end
   
   def edit
-    @product = Product.find(params[:id])
   end
   
   def update
-    @product = Product.find(params[:id])
     @product.update_attributes(product_params)
     
     respond_to do |format|
@@ -51,7 +49,6 @@ class Admin::ProductsController < AdminController
   end
   
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     
     respond_to do |format|
@@ -61,8 +58,13 @@ class Admin::ProductsController < AdminController
   
   private
   
+  def set_product
+    @product = Product.find(params[:id])
+    authorize @product
+  end
+  
   def product_params 
-    params.require(:product).permit(:name, :product_type, :price, :amount, :fabric, :manufacturer, :description, :bargain, :size_id, :bestseller,
+    params.require(:product).permit(:name, :product_type, :amount, :fabric, :manufacturer, :description, :bargain, :bestseller,
       color: [],
       picture_attributes: [:full_view, :zoom, :pattern, :full_view_thumb, :zoom_thumb, :pattern_thumb, :id]
       )    

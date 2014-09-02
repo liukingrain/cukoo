@@ -1,4 +1,5 @@
 class CartPolicy < ApplicationPolicy
+  
   def show?
     guest_cart? || user_cart?
   end
