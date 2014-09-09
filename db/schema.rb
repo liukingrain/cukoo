@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823115859) do
+ActiveRecord::Schema.define(version: 20140908162339) do
 
   create_table "addresses", force: true do |t|
     t.string   "city"
@@ -51,14 +51,15 @@ ActiveRecord::Schema.define(version: 20140823115859) do
   end
 
   create_table "cart_items", force: true do |t|
-    t.integer  "product_id"
-    t.string   "product_type"
     t.integer  "cart_id"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "product_size"
+    t.integer  "variant_id"
+    t.string   "variant_type"
   end
+
+  add_index "cart_items", ["variant_id", "variant_type"], name: "index_cart_items_on_variant_id_and_variant_type", using: :btree
 
   create_table "carts", force: true do |t|
     t.integer  "user_id"
@@ -147,6 +148,14 @@ ActiveRecord::Schema.define(version: 20140823115859) do
 
   create_table "product_types", force: true do |t|
     t.string   "kind"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_variants", force: true do |t|
+    t.float    "price"
+    t.integer  "product_id"
+    t.string   "size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

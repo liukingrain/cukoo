@@ -1,0 +1,6 @@
+= simple_form_for [:admin, @product_variant] do |f|
+  .form-group
+    = f.input :price
+    = f.input :size, as: :enumeration, include_blank: false
+    .actions
+      = f.button :submit, class: "btn btn-primary"

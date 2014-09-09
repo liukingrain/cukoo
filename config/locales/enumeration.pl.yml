@@ -1,15 +1,7 @@
 pl:
   enumerations:
-    product:
-      type:
-        bedclothes: "pościel"
-        sheet: "prześcieradło"
-        blanket: "koc"
-        bathrobe: "szlafrok"
-        bedspread: "narzuta"
-        pillowslip: "poszewka"
-    product_size:
-      kind:
+    product_variant:
+      size:
         large: "200x220"
         medium: "180x200"
         small: "160x200"

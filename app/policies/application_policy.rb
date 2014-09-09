@@ -71,8 +71,15 @@ class ApplicationPolicy
   end
   
   def admin?
-    false
+    user.present? && user.admin?
   end
-
+  
+  def regular_employee?
+    user.present? && user.regular_employee?
+  end
+  
+  def salesman?
+    user.present? && user.salesman?
+  end
 end
 

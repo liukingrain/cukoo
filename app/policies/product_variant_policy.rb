@@ -1,0 +1,3 @@
+class ProductVariantPolicy < AdminPolicy
+  
+end

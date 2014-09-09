@@ -35,9 +35,8 @@
         = format_price @product.price
       .add-to-cart
         = simple_form_for @cart_item do |f|
-          = f.input :product_id, as: :hidden, input_html: { value: @product.id }
-          = f.input :product_type, as: :hidden, input_html: { value: @product.type }
-          = f.input :product_size, as: :hidden, input_html: { value: @product.size }, label: false
+          = f.input :variant_id, as: :select, collection: @product.variants, value_method: :id, label_method: :size, label: "Dostępne rozmiary", include_blank: false
+          = f.input :variant_type, as: :hidden, input_html: { value: "ProductVariant" }
           = f.button :submit, "Dodaj do koszyka"
   
   

@@ -1,0 +1,20 @@
+- content_for :actions do
+  = link_to new_admin_product_variant_path, class: "btn btn-default" do
+    %i.icon-plus-sign
+    Dodaj wariant pościeli
+    
+%table.table.table-striped
+  %tr
+    %th Rozmiar
+    %th Cena
+    %th
+  - @product_variants.each do |variant|
+    %tr
+      %td= variant.size
+      %td= format_price(variant.price)
+      %td
+        .pull-right
+          .btn-group
+            = link_to admin_product_variant_path(variant.product_id, variant), method: :delete, confirm: "Czy na pewno chcesz usunąć ten wariant?", class: "btn btn-danger" do
+              %i.icon-trash 
+              Usuń
