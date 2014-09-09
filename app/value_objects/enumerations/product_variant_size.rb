@@ -1,6 +1,6 @@
 class Enumerations::ProductVariantSize < Enumerations::Base
   def self.options
-    @options ||= %w(small medium big)
+    @options ||= %w(small medium large)
   end
   
   private
