@@ -1,0 +1,40 @@
+@import "mixins"
+
+body
+  position: relative
+
+.plug-background
+  position: fixed
+  z-index: 50
+  background-color: rgba(0,0,0,0.5)
+  top: 0
+  bottom: 0
+  right: 0
+  left: 0
+  
+  .plug
+    background-color: white
+    border-radius: 4px
+    width: 300px
+    height: 200px
+    position: absolute
+    top: 20%
+    left: 50%
+    margin-left: -150px
+    text-align: center
+    +box-shadow
+    h1
+      color: white
+      background-color: $base-color
+      border-radius: 4px 4px 0 0
+      margin: 0
+      padding: 10px
+    h2
+      font-size: 16px
+      padding: 0 15px
+    .sign
+      font-style: italic
+      text-align: right
+      margin-right: 30px
+      color: $base-color
+      
