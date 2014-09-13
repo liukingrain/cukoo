@@ -14,12 +14,4 @@ class Product < ActiveRecord::Base
     %w(różowy niebieski biały szary zielony fioletowy żółty czerwony czarny brązowy)
   end
   
-  def available_sizes
-    variants.map(&:size)
-  end
-  
-  def available_sizes_names
-    %s(mała średnia duża)
-  end
-  
 end

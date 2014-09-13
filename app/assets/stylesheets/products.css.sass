@@ -103,8 +103,11 @@ section.product-details
     .price
       position: absolute
       right: 0
-      bottom: 60px
+      bottom: 40px
       font-size: 17px
+      text-align: right
+      span
+        display: block
     .add-to-cart
       position: absolute
       bottom: 20px
@@ -113,7 +116,7 @@ section.product-details
         content: ""
         background-image: image-url("small-icons-sprite.svg")
         background-position: -112px 0
-        top: 0
+        bottom: 3px
         left: 6px
         width: 28px
         height: 28px
@@ -122,6 +125,22 @@ section.product-details
         padding-left: 40px
         height: 30px
         line-height: 30px
+        &:before
+          content: ""
+          background-image: image-url("small-icons-sprite.svg")
+          background-position: -112px 0
+          top: 0
+          left: 6px
+          width: 28px
+          height: 28px
+          position: absolute
       .input
-        margin-bottom: 0
+        text-align: right
+      select
+        margin-bottom: 60px
+        text-align: right
+        display: block
+        float: right
+      .label
+        text-align: right
     
