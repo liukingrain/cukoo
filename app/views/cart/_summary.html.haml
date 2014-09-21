@@ -6,7 +6,9 @@
     .clearfix
   %h2.heading= t("summary.products")
   .items
-    = render partial: "cart/item", collection: resource.items
+    %table.cart-items
+      %tbody
+        = render partial: "cart/item", collection: resource.items
       
   .cart-summary
     %table
@@ -23,7 +25,7 @@
             Koszt dostawy
             = "(#{resource.shipping_method})"
         %td
-          %strong= format_price resource.shipping_price
+          %strong= resource.shipping_price
       %tr.shipping_summary
         %td
           %span Do zapłaty

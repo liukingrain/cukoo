@@ -78,6 +78,14 @@ class Cart < ActiveRecord::Base
     end
   end
   
+  def free_delivery_reached?
+    items_amount_due >= Shipping::FREE_OF_CHARGE_THRESHOLD
+  end
+  
+  def amount_to_free_shipping
+    Shipping::FREE_OF_CHARGE_THRESHOLD - items_amount_due
+  end
+  
   private
   
   def user_shipping_address

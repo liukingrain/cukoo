@@ -14,6 +14,12 @@
         = f.input :shipping_method, as: :radio_enumeration, label: false, checked: @step.shipping_method.value
 
       .clearfix
+      .delivery-price
+        - if @cart.free_delivery_reached?
+          = "Bezpłatna dostawa!"
+        - else
+          = "Do bezpłatnej dostawy brakuje jeszcze #{format_price(@cart.amount_to_free_shipping)}."
+          
       
       .actions
         .form-button

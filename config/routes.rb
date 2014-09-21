@@ -46,7 +46,7 @@ Sklep::Application.routes.draw do
     get "search", to: "search#index"
     get "search/autocomplete", to: "search#autocomplete", as: "search_autocomplete"
     get "quality", to: "home#quality"
-    get "bargain", to: "products#bargain"
+    get "term_of_use", to: "home#terms_of_use"
   end
   
 end

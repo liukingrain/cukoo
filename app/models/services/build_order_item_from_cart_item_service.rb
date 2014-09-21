@@ -27,7 +27,8 @@ class Services::BuildOrderItemFromCartItemService
       product_id: cart_item.product_id,
       quantity: cart_item.quantity,
       product_name: product_name,
-      product_price: product.price
+      product_price: product.price,
+      product_size: product.size
     }
   end
   

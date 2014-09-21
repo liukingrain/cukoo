@@ -1,2 +1,3 @@
 class CartStepDecorator < SummaryDecorator
+  
 end

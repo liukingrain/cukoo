@@ -4,7 +4,7 @@ class ProductSearch
   extend Enumerations::Base::Mount
   
   ORDERS = %w(created_at)
-  ATTRRIBUTES = %i(q limit fabric color variant_size)
+  ATTRRIBUTES = %i(q limit fabric color variant_size bargain)
                    
   ATTRRIBUTES.each do |attribute|
     attr_accessor attribute
@@ -23,6 +23,7 @@ class ProductSearch
   
   def resolve
     filter_by_size
+    filter_by_bargain
     #filter_by_type
     #filter_by_fabric
     #filter_by_color
@@ -83,6 +84,10 @@ class ProductSearch
   end
   
   private
+  
+  def filter_by_bargain
+    sphinx_scope.search :conditions => { :bargain => 1 }
+  end
   
   def filter_by_size
     sphinx_scope.search :conditions => { :variant_size => variant_size } if variant_size.present?
