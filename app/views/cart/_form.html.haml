@@ -4,8 +4,9 @@
     - @step.items.each_with_index do |item, index|
       .item{ data: { id: item.id, "nested-element" => true } }
         .item-number= index+1
-        .picture= image_tag item.product_picture.full_view_thumb
-        .name= item.product_name
+        .picture= image_tag item.product_picture
+        .name
+          = item.product_name + " (rozmiar #{item.product_size})"
         .price-wrapper
           .quantity
             = f.simple_fields_for :items, item do |fi|

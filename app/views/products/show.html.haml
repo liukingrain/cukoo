@@ -30,13 +30,16 @@
       .manufacturer
         Producent:
         = @product.manufacturer
-      .price
-        Cena:
-        = format_price @product.price
+
       .add-to-cart
         = simple_form_for @cart_item do |f|
-          = f.input :variant_id, as: :select, collection: @product.variants, value_method: :id, label_method: :size, label: "Dostępne rozmiary", include_blank: false
           = f.input :variant_type, as: :hidden, input_html: { value: "ProductVariant" }
+          .input{ data: { action: "change-size" } }
+            .label Dostępne rozmiary:
+            = f.select :variant_id, @product.variants.map { |r| [r.size, r.id, { :"data-variant-price" => format_price(r.price) }] }, value_method: :id, selected: @product.variants.first, include_blank: false
+          .price 
+            Cena:
+            %span{ data: { role: "variant-price" } }
           = f.button :submit, "Dodaj do koszyka"
   
   

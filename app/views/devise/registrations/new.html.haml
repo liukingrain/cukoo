@@ -1,5 +1,5 @@
 %h2 Rejestracja
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { id: "signup" }) do |f|
   = f.error_notification
   .form-inputs
     = f.input :email, required: true, autofocus: true, label: false, placeholder: "Wpisz swój email"

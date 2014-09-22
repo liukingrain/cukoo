@@ -4,7 +4,7 @@ class ProductSearch
   extend Enumerations::Base::Mount
   
   ORDERS = %w(created_at)
-  ATTRRIBUTES = %i(q limit size_id type_id fabric color)
+  ATTRRIBUTES = %i(q limit fabric color variant_size bargain)
                    
   ATTRRIBUTES.each do |attribute|
     attr_accessor attribute
@@ -23,7 +23,8 @@ class ProductSearch
   
   def resolve
     filter_by_size
-    filter_by_type
+    filter_by_bargain
+    #filter_by_type
     #filter_by_fabric
     #filter_by_color
     #filter_with_complex_filters
@@ -62,10 +63,11 @@ class ProductSearch
   
   def to_params
     { q: q,
-      size_id: size_id,
+      variant_size: variant_size,
       type_id: type_id,
       fabric: fabric,
       color: color,
+      
       order: order }.select{ |k,v| !v.blank? }
   end
   
@@ -81,51 +83,18 @@ class ProductSearch
     limit = value
   end
   
-  def summary
-    query = q unless q.blank?
-    if region.present?
-      [query, region.name].compact.join ", "
-    elsif workplace.value != "any"
-      [query, workplace.to_s.downcase].compact.join ", "
-    else
-      query
-    end
-  end
-  
   private
   
-  def filter_by_size
-    sphinx_scope.search with: { size_id: size_id } if size_id.present?
+  def filter_by_bargain
+    sphinx_scope.search :conditions => { :bargain => 1 }
   end
   
-  def filter_by_type
-    sphinx_scope.search with: { type_id: type_id } if type_id.present?
+  def filter_by_size
+    sphinx_scope.search :conditions => { :variant_size => variant_size } if variant_size.present?
   end
   
   def search_q_and_paginate
     sphinx_scope.search conditions: { "(name,description)" => q }, per_page: limit#, page: page, per_page: limit
-  end
-  
-  def filter_with_complex_filters
-    queries = {}
-    queries[:region_inclusion] = region_select_query unless region_id.blank?
-    queries[:categories_elements] = category_ids_select_query unless category_ids.empty?
-    queries[:category_elements] = category_select_query if category
-    if queries.any?
-      sphinx_scope.search(
-        select: queries.values.join(", "),
-        with: Hash[queries.keys.map{ |name| [name, 1] }])
-    end
-  end
-  
-  def order_sphinx_scope
-    orders = []
-    orders << "#{order_column} #{order_order}"
-    sphinx_scope.search order: orders.join(", ")
-  end
-  
-  def order_order
-    order.split("_").pop
   end
   
 end

@@ -56,15 +56,20 @@
     color: white
   .picture
     float: left
+    img
+      width: 100px
+      display: block
   .name
     float: left
-    width: 200px
+    width: 320px
     padding: 0 20px
     font-weight: bold
+    height: 100px
+    line-height: 100px
   .price-wrapper
     float: left
-    height: 80px
-    line-height: 80px
+    height: 100px
+    line-height: 100px
     .quantity
       float: left
       input[type=number]
@@ -145,6 +150,10 @@ section.authentication
     form
       border: 1px solid $base-color
       padding: 20px 40px
+      
+  .delivery-price
+    color: $base-color
+    font-style: italic
   
   .toggle[data-type=toggle-content]
     height: 0
@@ -182,6 +191,8 @@ section.authentication
     
 /* Koniec płatności i dostawy */
     
+/* Potwierdzenie */
+    
 section.confirmation
   padding: 0 100px
   .confirmation-wrapper
@@ -199,14 +210,6 @@ section.confirmation
       dd
         width: 70%
         line-height: 22px
-  .item-name
-    float: left
-  .price-wrapper
-    float: right
-    .amount, .unit-price, .item-summary
-      float: left
-    .unit-price
-      padding: 0 6px
   .cart-summary
     margin-top: 40px
     table
@@ -220,6 +223,8 @@ section.confirmation
         text-align: right
         padding: 5px 15px
         border: 1px solid $base-color
+    .free-delivery
+      color: $base-color
   label.checkbox
     float: right
     font-size: 13px
@@ -228,10 +233,21 @@ section.confirmation
     color: $base-color
     &:hover
       color: $hover-base-color
-    
-/* Potwierdzenie */
-    
-
+      
+  table.cart-items
+    width: 100%
+    td
+      border: 1px solid $base-color
+      padding: 5px 15px
+      &.picture
+        width: 60px
+        padding: 5px
+      &.price
+        text-align: right
+        width: 200px
+    img
+      width: 60px
+      display: block
 
     
 /* Koniec potwierdzenia */    

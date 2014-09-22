@@ -19,3 +19,4 @@ pl:
   summary:
     products: "Zamówione produkty"
     comment: "Komentarz do zamówienia"
+    free_delivery: "bezpłatna dostawa"

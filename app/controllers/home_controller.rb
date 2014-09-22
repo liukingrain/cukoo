@@ -7,4 +7,7 @@ class HomeController < ApplicationController
   def quality
   end
   
+  def terms_of_use
+  end
+  
 end

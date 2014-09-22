@@ -23,11 +23,20 @@
         .amount{ data: {'initial-value' => current_cart.items_quantity } }
           = I18n.translate :product_quantity, count: current_cart.items_quantity
         .clearfix
+  .clearfix
+  = render "cookies_info"
   %nav.main-nav{ data: { role: "main-nav" } }
     %ul.main-category
       %li{data: {role: "main-category" }}=link_to "Wszystkie pościele", products_path
+<<<<<<< HEAD
       %li{data: {role: "main-category" }}=link_to "160x200", products_path(size_id: 3)
       %li{data: {role: "main-category" }}=link_to "180x200", products_path(size_id: 1)
       %li{data: {role: "main-category" }}=link_to "200x220", products_path(size_id: 2)
       %li{data: {role: "main-category" }}=link_to "%Promocje", bargain_path, class: "bargain"
+=======
+      %li{data: {role: "main-category" }}=link_to "160x200", products_path(variant_size: "small")
+      %li{data: {role: "main-category" }}=link_to "180x200", products_path(variant_size: "medium")
+      %li{data: {role: "main-category" }}=link_to "200x220", products_path(variant_size: "large")
+      %li{data: {role: "main-category" }}=link_to "%Promocje", products_path(bargain: "true")
+>>>>>>> variants
   = render "notices"

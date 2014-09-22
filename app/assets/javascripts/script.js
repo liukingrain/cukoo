@@ -2,6 +2,9 @@ Cukoo = {}
 
 Cukoo.Popup = {
     is_content: false,
+    is_loading: false,
+    
+    callbacks: [],
     
     init: function () {
         var self = this,
@@ -50,7 +53,7 @@ Cukoo.Popup = {
         var self = this,
             popupWindow = self.getPopupWindow();
         
-        popupWindow.remove();
+        popupWindow.parents('.popover-overlay').remove();
         
         self.is_content = true;
     },
@@ -75,28 +78,20 @@ Cukoo.Popup = {
                 type: form_method,
                 url: form_url,
                 data: form_data,
-                statusCode: {
-                  200: function (response) {
-
-                        },
-                    401: function (response) {
-                      console.log(response, 'sadfsdfsd');
-                      self.fill(response.responseText);
-                    }
-                },
                 success: function (content, status, response) {
-                    self.fill(content);
-                    console.log(status);
+                  console.log(options);
                     if (typeof options.successCallback === 'function') {
                         options.successCallback();
+                    } else {
+                        //self.close();
+                        console.log('ok');
+                        //window.location.reload();
                     }
                 }
                 ,
                 error: function (response, status) {
-                    self.fill(self.error());
-                    console.log(response.status);
                     if (typeof options.errorCallback === 'function') {
-                        options.errorCallback();
+                        options.errorCallback(response.responseText);
                     }
                 }
             });
@@ -121,6 +116,7 @@ Cukoo.Popup = {
             popupWindow = self.getPopupWindow();
     
         self.is_content = true;
+        self.is_loading = false;
         popupWindow.removeClass('loading');
     },
     
@@ -131,6 +127,7 @@ Cukoo.Popup = {
         if (!self.is_content) {
             popupWindow.addClass('loading');
         }
+        self.is_loading = true;
     },
     
     getPopupWindow: function () {
@@ -142,13 +139,17 @@ Cukoo.Popup = {
             popupWrapper = jQuery('<div>').addClass('popup-wrapper');
             popupContent = jQuery('<div>').addClass('popup-content');
             popupWindow = jQuery('<div>').addClass('popup_window').addClass('content');
-            popupClose = jQuery('<span>').addClass('close').addClass('popup_close').html('x');
+            popupClose = jQuery('<span>').addClass('close').addClass('popup_close').html('&nbsp;');
             popupContent.append(popupClose);
             popupContent.append(popupWindow);
             
             popupOverlay.append(popupWrapper);
             popupWrapper.append(popupContent);
             popupOverlay.show();
+            
+            popupClose.on('click', function(){
+                Cukoo.Popup.close();
+            });
         }
         
         jQuery('body').prepend(popupOverlay);
@@ -165,13 +166,15 @@ Cukoo.Popup = {
         });
         
         parentElement.find('.submit_popup').on('click', function (event) {
+            self.stopEvents(event);
             var triggerElement = jQuery(this),
                 formElement = triggerElement.parents('form'),
-                successCallback = formElement.get(0).successCallback || null,
-                errorCallback = formElement.get(0).errorCallback || null,
-                beforeSubmitCallback = formElement.get(0).beforeSubmitCallback || null;
+                cname = formElement.data('callbacks-name'),
+                formCallbacks = self.callbacks[cname] || {},
+                successCallback = formCallbacks.successCallback || null,
+                errorCallback = formCallbacks.errorCallback || null,
+                beforeSubmitCallback = formCallbacks.beforeSubmitCallback || null;
             
-            self.stopEvents(event);
             self.submit(triggerElement, {
                 'successCallback': successCallback,
                 'errorCallback': errorCallback,
@@ -194,26 +197,63 @@ Cukoo.Popup = {
 
 jQuery(document).ready(function(){
     Cukoo.Popup.init();
-    jQuery('body').on('click', 'popup_close', function(){
-      console.log('hdshfhdsbfhdhfbdhdgfhdfhgdhfbghdfbghfghfgfghdfbgjfgjdfhgj');
-      Cooko.Popup.close();
-    });
 });
 
 Cukoo.Forms = {
     initialize: function(parentElement) {
         Cukoo.Forms.Login.init(parentElement);
+        Cukoo.Forms.Signup.init(parentElement);
     }
 };
 
 Cukoo.Forms.Login = {
     init: function(parentElement) {
-        var loginForm = parentElement.find('#login');
-        if (loginForm.get(0)) {
-            loginForm.get(0).successCallback = function () {
-                Cukoo.Popup.close();
-                jQuery('body').append('<div style="width:50px;height:50px;background:red"></div>');
+        var loginForm = parentElement.find('#new_user'), cname = '#login', callbacks = {};
+        
+        if (loginForm.get(0)) {          
+            loginForm.data('callbacks-name', cname);
+            
+            callbacks.errorCallback = function (errorMessage) {
+                var errorElement = loginForm.find('.error');
+                if (!errorElement.size()) {
+                  errorElement = jQuery('<div>').addClass('error');
+                }                
+                loginForm.prepend(errorElement.html(errorMessage));// jQuery('body').append('<div style="width:50px;height:50px;background:red"></div>');
             }
+            
+            callbacks.beforeSubmitCallback = function () {
+              loginForm.find('.error').remove();
+            }
+            
+            Cukoo.Popup.callbacks[cname] = callbacks;
         }
     }
 };
+
+Cukoo.Forms.Signup = {
+  init: function(parentElement) {
+    var form = parentElement.find('#signup'), cname = '#signup', callbacks = {};
+    
+    if (form.get(0)) {          
+        form.data('callbacks-name', cname);
+        
+        callbacks.successCallback = function() {
+          
+        }
+        
+        callbacks.errorCallback = function (errorMessage) {
+            var errorElement = form.find('.error');
+            if (!errorElement.size()) {
+              errorElement = jQuery('<div>').addClass('error');
+            }                
+            form.prepend(errorElement.html(errorMessage));// jQuery('body').append('<div style="width:50px;height:50px;background:red"></div>');
+        }
+        
+        callbacks.beforeSubmitCallback = function () {
+          form.find('.error').remove();
+        }
+        
+        Cukoo.Popup.callbacks[cname] = callbacks;
+    }
+  }
+}

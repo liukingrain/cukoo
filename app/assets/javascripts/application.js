@@ -14,9 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require_tree ../../../vendor/assets/javascripts
 //= require underscore
-//= require backbone
-//= require backbone_rails_sync
-//= require backbone_datalink
-//= require backbone/sklep
 //= require_tree .

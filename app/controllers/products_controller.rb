@@ -15,22 +15,10 @@ class ProductsController < ApplicationController
     @products = Product.with_bargain
   end
   
-  def small_bedclothes
-    @products = Product.small_bedclothes
-  end
-  
-  def medium_bedclothes
-    @products = Product.medium_bedclothes
-  end
-  
-  def big_bedclothes
-    @products = Product.big_bedclothes
-  end
-  
   private
   
   def product_search_params
-    params.permit(:size_id, :q)
+    params.permit(:variant_size, :q)
   end
   
 end
