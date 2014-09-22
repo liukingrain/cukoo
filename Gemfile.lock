@@ -300,7 +300,6 @@ DEPENDENCIES
   letter_opener
   mini_magick!
   mysql2
-  net-ssh (~> 2.9.1)
   newrelic_rpm
   omniauth
   omniauth-facebook (= 1.4.0)

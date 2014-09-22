@@ -85,7 +85,6 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rvm"
   gem "capistrano-nc"
-  gem 'net-ssh', '~> 2.9.1'
 end
 
 
