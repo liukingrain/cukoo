@@ -1,4 +1,4 @@
-set :repo_url, "git@github.com:annawojcieszek/cukoo.git"
+set :repo_url, "git@nibynic.com:cuckoo.git"
 
 set :tmp_dir, "/home/wojcieszka/www/tmp"
 
